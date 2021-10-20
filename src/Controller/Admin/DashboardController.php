@@ -5,43 +5,51 @@ namespace App\Controller\Admin;
 use App\Entity\User;
 use App\Entity\Product;
 use App\Entity\Category;
+use App\Repository\UserRepository;
+use App\Repository\ProductRepository;
+use App\Repository\CategoryRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 
 class DashboardController extends AbstractDashboardController
 {
+    protected $user;
+    protected $category;
+    protected $product;
+
+    public function __construct(
+        UserRepository $user,
+        CategoryRepository $category,
+        ProductRepository $product
+    ) {
+        $this->UserRepository = $user;
+        $this->CategoryRepository = $category;
+        $this->ProductRepository = $product;
+    }
     /**
      * @Route("/admin_14A1789", name="admin")
+     * @Security("is_granted('ROLE_ADMIN')")
      */
     public function index(): Response
     {
-        // return parent::index();
-
-        // $routeBuilder = $this->get(AdminUrlGenerator::class);
-        // return $this->redirect($routeBuilder->setController(OneOfYourCrudController::class)->generateUrl());
-
         // you can also redirect to different pages depending on the current user
         if ('jane' === $this->getUser()->getUsername()) {
             return $this->redirect('...');
         }
 
-        // you can also render some template to display a proper Dashboard
-        // (tip: it's easier if your template extends from @EasyAdmin/page/content.html.twig)
-        return $this->render('@EasyAdmin/welcome.html.twig', [
-            'dashboard_controller_filepath' => (new \ReflectionClass(static::class))->getFileName(),
-            'dashboard_controller_class' => (new \ReflectionClass(static::class))->getShortName(),
+        return $this->render('bundle\EasyAdminBundle\welcome.html.twig', [
+            'countAllUsers' => $this->UserRepository->countAllUsers(),
         ]);
     }
 
-
     public function configureDashboard(): Dashboard
     {
-        return Dashboard::new()
-            ->setTitle('Pizza Mama');
+        return Dashboard::new()->setTitle('Pizza Mama');
     }
 
     public function configureMenuItems(): iterable
@@ -52,5 +60,4 @@ class DashboardController extends AbstractDashboardController
         // yield MenuItem::linkToCrud('User', 'fa fa-user', User::class);
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
     }
-    
 }
