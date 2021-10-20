@@ -41,9 +41,11 @@ class DashboardController extends AbstractDashboardController
         if ('jane' === $this->getUser()->getUsername()) {
             return $this->redirect('...');
         }
-
+        $users = $this->UserRepository->findAll();
         return $this->render('bundle\EasyAdminBundle\welcome.html.twig', [
             'countAllUsers' => $this->UserRepository->countAllUsers(),
+            'users' => $users,
+
         ]);
     }
 

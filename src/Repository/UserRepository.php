@@ -51,7 +51,7 @@ class UserRepository extends ServiceEntityRepository implements
     {
         $queryBuilder= $this ->createQueryBuilder('a');
         $queryBuilder->select('COUNT(a.id) as value');
-        return $queryBuilder->getQuery()->getResult();
+        return $queryBuilder->getQuery()->getSingleScalarResult();
     }
 
     /*
