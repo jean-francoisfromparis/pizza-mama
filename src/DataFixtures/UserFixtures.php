@@ -26,13 +26,14 @@ class UserFixtures extends Fixture
         // the password :password
         $hashPassword =
             '$2y$13$AIX/MadGpGDP/5991rEEJO4yiTGmWawgSZMKro9/FfyRWgThoQkcW';
-        for ($i = 0; $i < 6; $i++) {
+        for ($i = 0; $i <12 ; $i++) {
             $user = new User();
             $user
                 ->setEmail("user{$i}@email.fr")
                 // the password :password
                 ->setPassword($hashPassword)
-                ->setRoles(['ROLE_USER']);
+                ->setRoles(['ROLE_USER'])
+                ->setCreatedAt(new \dateTimeImmutable(sprintf('-%d days', rand(1, 100))));
             $manager->persist($user);
         }
         for ($i = 0; $i < 2; $i++) {
@@ -41,7 +42,8 @@ class UserFixtures extends Fixture
                 ->setEmail("admin{$i}@email.fr")
                 // the password :password
                 ->setPassword($hashPassword)
-                ->setRoles(['ROLE_ADMIN']);
+                ->setRoles(['ROLE_ADMIN'])
+                ->setCreatedAt(new \dateTimeImmutable('2021-10-21'));
             $manager->persist($user);
         }
         $manager->flush();

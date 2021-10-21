@@ -2,8 +2,12 @@
 
 namespace App\Entity;
 
+use DateTimeImmutable;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 use Symfony\Bridge\Doctrine\IdGenerator\UlidGenerator;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -14,6 +18,9 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
+    // use TimestampableEntity;
+    // use SoftDeleteableEntity;
+
     /**
      * Private
      *
@@ -39,6 +46,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string")
      */
     private $password;
+
+    /**
+     * @ORM\Column(type="datetime_immutable")
+     */
+    private $createdAt;
+
+    /**
+     * @ORM\Column(type="datetime_immutable", nullable=true)
+     */
+    private $updatedAt;
+
+    /**
+     * @ORM\Column(type="datetime_immutable", nullable=true)
+     */
+    private $deleteAt;
+
     /**
      * Get private
      */
@@ -55,7 +78,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
     /**
      * Set the value of the email
-     * 
+     *
      * @return  self
      */
     public function setEmail(string $email): self
@@ -96,7 +119,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
     /**
      * Set the role of the users
-     * 
+     *
      * @return  self
      */
     public function setRoles(array $roles): self
@@ -146,5 +169,53 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getDatetimeImmutable(): ?string
+    {
+        return $this->datetime_immutable;
+    }
+
+    public function setDatetimeImmutable(?string $datetime_immutable): self
+    {
+        $this->datetime_immutable = $datetime_immutable;
+
+        return $this;
+    }
+
+    public function getDeleteAt(): ?\DateTimeImmutable
+    {
+        return $this->deleteAt;
+    }
+
+    public function setDeleteAt(?\DateTimeImmutable $deleteAt): self
+    {
+        $this->deleteAt = $deleteAt;
+
+        return $this;
     }
 }
