@@ -54,15 +54,17 @@ class UserRepository extends ServiceEntityRepository implements
         return $queryBuilder->getQuery()->getSingleScalarResult();
     }
 
-    /*
-    public function findOneBySomeField($value): ?User
+
+    public function findTenLastUsers()
     {
         return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
+            ->setMaxResults(10)
+            ->andWhere('u.roles LIKE :val')
+            ->setParameter('val', '%ROLE_USER%')
+            ->orderBy('u.createdAt', 'DESC')
             ->getQuery()
-            ->getOneOrNullResult()
+            ->getResult()
         ;
     }
-    */
+
 }

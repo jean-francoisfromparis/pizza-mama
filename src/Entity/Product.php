@@ -2,18 +2,34 @@
 
 namespace App\Entity;
 
-use App\Repository\ProductRepository;
+use App\Entity\Category;
+
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ProductRepository;
+use Gedmo\Mapping\Annotation\SoftDeleteable;
+use Gedmo\Timestampable\Traits\Timestampable;
+Use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\HttpFoundation\File\File;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 
 /**
+ *
  * @ORM\Entity(repositoryClass=ProductRepository::class)
+ * @Vich\Uploadable
+ * @Gedmo\SoftDeleteable(hardDelete=false)
  */
 class Product
 {
+    use TimestampableEntity;
+    use SoftDeleteableEntity;
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     *
      */
     private $id;
 
@@ -33,9 +49,17 @@ class Product
     private $price;
 
     /**
+     * 
      * @ORM\Column(type="string", length=255)
+     * @var string|null
      */
     private $photo;
+
+    /**
+     * @Vich\UploadableField(mapping="products_images", fileNameProperty="photo")
+     * @var File|null
+     */
+    private $photoFile;
 
     /**
      * @ORM\Column(type="boolean")
@@ -48,20 +72,10 @@ class Product
      */
     private $category;
 
-    /**
-     * @ORM\Column(type="datetime_immutable")
-     */
-    private $createdAt;
-
-    /**
-     * @ORM\Column(type="datetime_immutable", nullable=true)
-     */
-    private $updatedAt;
-
-    /**
-     * @ORM\Column(type="datetime_immutable", nullable=true)
-     */
-    private $deleteAt;
+    public function __toString()
+    {
+        return $this->getname();
+    }
 
     public function getId(): ?int
     {
@@ -140,39 +154,33 @@ class Product
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    /**
+     * Get the value of photoFile
+     *
+     * @return  File
+     */
+
+    public function getPhotoFile()
     {
-        return $this->createdAt;
+        return $this->photoFile;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    /**
+     * Set the value of photoFile
+     *
+     * @param  File  $photoFile
+     *
+     * @return  self
+     */
+
+    public function setPhotoFile(File $photoFile = null)
     {
-        $this->createdAt = $createdAt;
+        $this->photoFile = $photoFile;
 
-        return $this;
-    }
-
-    public function getUpdatedAt(): ?\DateTimeImmutable
-    {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    public function getDeleteAt(): ?\DateTimeImmutable
-    {
-        return $this->deleteAt;
-    }
-
-    public function setDeleteAt(?\DateTimeImmutable $deleteAt): self
-    {
-        $this->deleteAt = $deleteAt;
-
-        return $this;
+        if (null !== $photoFile) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTimeImmutable();
+        }
     }
 }

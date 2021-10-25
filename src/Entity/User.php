@@ -60,12 +60,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\Column(type="datetime_immutable", nullable=true)
      */
-    private $deleteAt;
+    private $deletedAt;
+
+    public function __toString()
+    {
+        return $this->getId() . ' - ' . $this->email;
+    }
 
     /**
      * Get private
+     * @return string|null
      */
-    public function getId(): ?int
+    public function getId(): ?string
     {
         return $this->id;
     }
@@ -207,14 +213,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getDeleteAt(): ?\DateTimeImmutable
+    public function getDeletedAt(): ?\DateTimeImmutable
     {
-        return $this->deleteAt;
+        return $this->deletedAt;
     }
 
-    public function setDeleteAt(?\DateTimeImmutable $deleteAt): self
+    public function setDeletedAt(?\DateTimeImmutable $deletedAt): self
     {
-        $this->deleteAt = $deleteAt;
+        $this->deletedAt = $deletedAt;
 
         return $this;
     }
