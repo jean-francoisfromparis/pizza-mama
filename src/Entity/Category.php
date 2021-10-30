@@ -2,16 +2,29 @@
 
 namespace App\Entity;
 
-use App\Repository\CategoryRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\Product;
 use Doctrine\ORM\Mapping as ORM;
+Use Gedmo\Mapping\Annotation as Gedmo;
+use App\Repository\CategoryRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Vich\UploaderBundle\Mapping\Annotation\Uploadable;
+use Vich\UploaderBundle\Mapping\Annotation\UploadableField;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 
 /**
+ * @Gedmo\SoftDeleteable(hardDelete=false)
  * @ORM\Entity(repositoryClass=CategoryRepository::class)
+ * @Vich\Uploadable
+ *
  */
 class Category
 {
+    use TimestampableEntity;
+    use SoftDeleteableEntity;
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -31,27 +44,18 @@ class Category
 
     /**
      * @ORM\OneToMany(targetEntity=Product::class, mappedBy="category", orphanRemoval=true)
+     *
      */
     private $products;
-
-    /**
-     * @ORM\Column(type="datetime_immutable")
-     */
-    private $createdAt;
-
-    /**
-     * @ORM\Column(type="datetime_immutable", nullable=true)
-     */
-    private $updatedAt;
-
-    /**
-     * @ORM\Column(type="datetime_immutable", nullable=true)
-     */
-    private $deleteAt;
 
     public function __construct()
     {
         $this->products = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->getname();
     }
 
     public function getId(): ?int
@@ -109,42 +113,6 @@ class Category
                 $product->setCategory(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTimeImmutable
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    public function getUpdatedAt(): ?\DateTimeImmutable
-    {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    public function getDeleteAt(): ?\DateTimeImmutable
-    {
-        return $this->deleteAt;
-    }
-
-    public function setDeleteAt(?\DateTimeImmutable $deleteAt): self
-    {
-        $this->deleteAt = $deleteAt;
 
         return $this;
     }

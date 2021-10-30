@@ -10,3 +10,6 @@ import './styles/app.css';
 
 // start the Stimulus application
 import './bootstrap';
+import './jquery';
+// import { Chart, registerables } from 'chart.js';
+// Chart.register(...registerables);

@@ -54,15 +54,32 @@ class UserRepository extends ServiceEntityRepository implements
         return $queryBuilder->getQuery()->getSingleScalarResult();
     }
 
-    /*
-    public function findOneBySomeField($value): ?User
+    /**
+     * @return User[] Returns an array of User objects
+     */
+    public function findTenLastUsers()
     {
         return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
+            ->setMaxResults(10)
+            ->andWhere('u.roles LIKE :val')
+            ->setParameter('val', '%ROLE_USER%')
+            ->orderBy('u.createdAt', 'DESC')
             ->getQuery()
-            ->getOneOrNullResult()
+            ->getResult()
         ;
     }
-    */
+
+    /**
+     * @return void
+     */
+    public function countUsersByDate()
+    {
+            $queryBuilder = $this->createQueryBuilder('u')
+            ->select('SUBSTRING(u.createdAt, 1, 10) as userByDate, count(u) as count')
+            ->groupBy('userByDate')
+            ->orderBy('userByDate', 'ASC');
+            return  $queryBuilder ->getQuery() ->getArrayResult();
+
+        ;
+    }
 }
