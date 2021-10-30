@@ -49,10 +49,10 @@ class DashboardController extends AbstractDashboardController
         $countUsersByDates =$this->UserRepository->countUsersByDate();
         $dates = [];
         $count =[];
-        // foreach ($countUsersByDates as $countUsersByDate) {
-        //     $dates [] = $countUsersByDate.0;
-        //     $count [] = $countUsersByDate[1];
-        // }
+        foreach ($countUsersByDates as $countUsersByDate) {
+            $dates [] = $countUsersByDate['userByDate'];
+            $count [] = $countUsersByDate['count'];
+        }
 
         // $count = ;
         return $this->render('bundle\EasyAdminBundle\welcome.html.twig', [
@@ -60,12 +60,7 @@ class DashboardController extends AbstractDashboardController
             'resultats' => $resultats,
             'count' => json_encode($count),
             'dates' => json_encode($dates),
-            'countUsersByDates' => $countUsersByDates,
         ]);
-//TODOS   requête     select created_at ,count(1)
-// from  user
-// group by created_at
-//  ORDER BY created_at desc
     }
 
     public function configureDashboard(): Dashboard

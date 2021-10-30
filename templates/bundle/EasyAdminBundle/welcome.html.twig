@@ -45,12 +45,6 @@
       <canvas id="myChart" width="400" height="250"></canvas>
     </div>
     <div class="col-md-6">
-    {% for countUsersByDate in countUsersByDates %}
-    <pre>
-      {{ dump(attribute(countUsersByDate, 'userByDate') ) }}
-    </pre>
-
-    {% endfor %}
 
     </div>
   </div>
@@ -63,37 +57,19 @@
     function init() {
       var ctx = document.getElementById('myChart').getContext('2d');
       var chart = new Chart(ctx, { // The type of chart we want to create
-        type: 'line',
+        type: 'bar',
 
         // The data for our dataset
         data: {
-          labels: [
-            'Janvier',
-            'Février',
-            'Mars',
-            'Avril',
-            'Mai',
-            'Juin',
-            'Juillet',
-            'Aout',
-            'Septembre',
-            'Octobre',
-            'Novembre',
-          ],
+          labels:
+          {{ dates|raw }}
+          ,
           datasets: [
             {
               label: 'My First dataset',
               backgroundColor: 'rgb(255, 99, 132)',
               borderColor: 'rgb(255, 99, 132)',
-              data: [
-                0,
-                10,
-                5,
-                2,
-                20,
-                30,
-                45
-              ]
+              data: {{ count|raw }}
             }
           ]
         },

@@ -27,7 +27,6 @@ return $crud
 ->setDefaultSort(['createdAt' => 'DESC'],['roles' => 'DESC']);
 //TODOs mettre en place les permissions et un role[ product_manager] et [super_admin]
 //TODOs mettre en  place la pagination
-//TODOs mettre en  place last_updated
 //TODOs mettre en place la traduction
 ;
 }
