@@ -2,6 +2,11 @@
 {% extends '@EasyAdmin/page/content.html.twig' %}
 
 {% block content_title 'Bienvenu sur le tableau de bord'|trans %}
+{% block  configured_stylesheets %}
+  {{ parent() }}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.css" integrity="sha512-/zs32ZEJh+/EO2N1b0PEdoA10JkdC3zJ8L5FTiQu82LR9S/rOQNfQN7U59U9BC12swNeRAz3HSzIL2vpp4fv3w==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+{% endblock %}
+
 
 {% block main %}
   <div class="container">
@@ -36,7 +41,66 @@
     </div>
   </div>
   <div class="row mt-2">
-    <div class="col-md-6"><canvas id="myChart" class="img-thumbnail" width="400" height="400"></canvas></div>
-    <div class="col-md-6"></div>
+    <div class="col-md-6 border border-3 shadow rounded-3">
+      <canvas id="myChart" width="400" height="250"></canvas>
+    </div>
+    <div class="col-md-6">
+    {% for countUsersByDate in countUsersByDates %}
+    <pre>
+      {{ dump(attribute(countUsersByDate, 'userByDate') ) }}
+    </pre>
+
+    {% endfor %}
+
+    </div>
   </div>
 {% endblock %}
+{% block  body_javascript %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js" integrity="sha512-hZf9Qhp3rlDJBvAKvmiG+goaaKRZA6LKUO35oK6EsM0/kjPK32Yw7URqrq3Q+Nvbbt8Usss+IekL7CRn83dYmw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+
+    // js goes in here.
+    function init() {
+      var ctx = document.getElementById('myChart').getContext('2d');
+      var chart = new Chart(ctx, { // The type of chart we want to create
+        type: 'line',
+
+        // The data for our dataset
+        data: {
+          labels: [
+            'Janvier',
+            'Février',
+            'Mars',
+            'Avril',
+            'Mai',
+            'Juin',
+            'Juillet',
+            'Aout',
+            'Septembre',
+            'Octobre',
+            'Novembre',
+          ],
+          datasets: [
+            {
+              label: 'My First dataset',
+              backgroundColor: 'rgb(255, 99, 132)',
+              borderColor: 'rgb(255, 99, 132)',
+              data: [
+                0,
+                10,
+                5,
+                2,
+                20,
+                30,
+                45
+              ]
+            }
+          ]
+        },
+        // Configuration options go here
+        options: {}
+      });
+    }
+    document.addEventListener("DOMContentLoaded", init, false);
+  </script>
+{% endblock  body_javascript %}

@@ -34,15 +34,6 @@ class DashboardController extends AbstractDashboardController
         $this->ProductRepository = $product;
     }
 
-    public function configureAssets(): Assets
-    {
-        return Assets::new()
-        // ->addWebpackEncoreEntry('admin.js')
-         ->addJsFile('build/admin.js')
-         ->addJsFile('assets/app.js')
-        ;
-    }
-
     /**
      * @Route("/admin_14A1789", name="admin")
      * @Security("is_granted('ROLE_ADMIN')")
@@ -53,13 +44,28 @@ class DashboardController extends AbstractDashboardController
         if ('jane' === $this->getUser()->getUsername()) {
             return $this->redirect('...');
         }
+        $countUsersByDates = [];
         $resultats = $this->UserRepository->findTenLastUsers();
-        $users = $this->UserRepository->findAll();
+        $countUsersByDates =$this->UserRepository->countUsersByDate();
+        $dates = [];
+        $count =[];
+        // foreach ($countUsersByDates as $countUsersByDate) {
+        //     $dates [] = $countUsersByDate.0;
+        //     $count [] = $countUsersByDate[1];
+        // }
+
+        // $count = ;
         return $this->render('bundle\EasyAdminBundle\welcome.html.twig', [
             'countAllUsers' => $this->UserRepository->countAllUsers(),
-            'users' => $users,
             'resultats' => $resultats,
+            'count' => json_encode($count),
+            'dates' => json_encode($dates),
+            'countUsersByDates' => $countUsersByDates,
         ]);
+//TODOS   requête     select created_at ,count(1)
+// from  user
+// group by created_at
+//  ORDER BY created_at desc
     }
 
     public function configureDashboard(): Dashboard

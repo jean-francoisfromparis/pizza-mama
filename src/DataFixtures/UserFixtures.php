@@ -26,7 +26,7 @@ class UserFixtures extends Fixture
         // the password :password
         $hashPassword =
             '$2y$13$AIX/MadGpGDP/5991rEEJO4yiTGmWawgSZMKro9/FfyRWgThoQkcW';
-        for ($i = 0; $i <272 ; $i++) {
+        for ($i = 0; $i <1500 ; $i++) {
             $user = new User();
             $user
                 ->setEmail("user{$i}@email.fr")
