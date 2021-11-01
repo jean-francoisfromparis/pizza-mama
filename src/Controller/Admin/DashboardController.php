@@ -18,12 +18,20 @@ use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 
+/**
+ * DashboardController
+ */
 class DashboardController extends AbstractDashboardController
 {
     protected $user;
     protected $category;
     protected $product;
 
+    /**
+     * __construct
+     *
+     * @return void
+     */
     public function __construct(
         UserRepository $user,
         CategoryRepository $category,
@@ -35,8 +43,11 @@ class DashboardController extends AbstractDashboardController
     }
 
     /**
-     * @Route("/admin_14A1789", name="admin")
+     * Index
+     *
+     * @Route("/admin_14A1789",              name="admin")
      * @Security("is_granted('ROLE_ADMIN')")
+     * @return Response
      */
     public function index(): Response
     {
@@ -46,37 +57,64 @@ class DashboardController extends AbstractDashboardController
         }
         $countUsersByDates = [];
         $resultats = $this->UserRepository->findTenLastUsers();
-        $countUsersByDates =$this->UserRepository->countUsersByDate();
+        $countUsersByDates = $this->UserRepository->countUsersByDate();
         $dates = [];
-        $count =[];
+        $count = [];
         foreach ($countUsersByDates as $countUsersByDate) {
-            $dates [] = $countUsersByDate['userByDate'];
-            $count [] = $countUsersByDate['count'];
+            $dates[] = $countUsersByDate['userByDate'];
+            $count[] = $countUsersByDate['count'];
         }
 
         // $count = ;
-        return $this->render('bundle\EasyAdminBundle\welcome.html.twig', [
+        return $this->render(
+            'bundle\EasyAdminBundle\welcome.html.twig', [
             'countAllUsers' => $this->UserRepository->countAllUsers(),
             'resultats' => $resultats,
             'count' => json_encode($count),
             'dates' => json_encode($dates),
-        ]);
+            ]
+        );
     }
 
+    /**
+     * ConfigureDashboard
+     *
+     * @return Dashboard
+     */
     public function configureDashboard(): Dashboard
     {
-        return Dashboard::new()
-        ->setTitle('Pizza Mama')
-
-        ;
+        return Dashboard::new()->setTitle(
+            '<div class="row my-3">
+            <img src="../images/logo/logo.png" class="img-fluid" alt="Pizza Mama">
+            </div>'
+        );
     }
 
+    /**
+     * ConfigureMenuItems
+     *
+     * @return iterable
+     */
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linktoDashboard('Tableau de bord', 'fas fa-user-cog my-4')
-        ->setCssClass('d-block');
-        yield MenuItem::linkToCrud('Catégories', 'fa fa-tags mb-3', Category::class);
-        yield MenuItem::linkToCrud('Produits', 'fas fa-hamburger  mb-3', Product::class);
-        yield MenuItem::linkToCrud('Utilisateurs', ' fa fa-users  mb-3', User::class);
+        yield MenuItem::linktoDashboard(
+            'Tableau de bord',
+            'fas fa-user-cog my-5'
+        )->setCssClass('d-block');
+        yield MenuItem::linkToCrud(
+            'Catégories',
+            'fa fa-tags mb-5',
+            Category::class
+        );
+        yield MenuItem::linkToCrud(
+            'Produits',
+            'fas fa-hamburger  mb-5',
+            Product::class
+        );
+        yield MenuItem::linkToCrud(
+            'Utilisateurs',
+            ' fa fa-users  mb-5',
+            User::class
+        );
     }
 }
