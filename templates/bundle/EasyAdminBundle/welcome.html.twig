@@ -5,15 +5,17 @@
 {% block  configured_stylesheets %}
   {{ parent() }}
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.css" integrity="sha512-/zs32ZEJh+/EO2N1b0PEdoA10JkdC3zJ8L5FTiQu82LR9S/rOQNfQN7U59U9BC12swNeRAz3HSzIL2vpp4fv3w==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
-<style>
-.card:hover{
-  transform: scale(1.05);
-  box-shadow: 10px 10px 15px rgba(0,0,0,0.3);
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap" rel="stylesheet">
+  <style>
+.alex {
+      font-family: 'Alex Brush', cursive;
 }
-</style>
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3);
+    }
+  </style>
 {% endblock %}
-
-
 {% block main %}
   <div class="container">
     <div class="row bg-info mb-3">
@@ -24,6 +26,7 @@
       <div class="col-6"></div>
     </div>
     <div class="row mt-2">
+      <h2>Les 10 derniers utilisateurs inscrits</h2>
       <table class="table text-center table-striped display">
         <thead>
           <tr>
@@ -50,9 +53,7 @@
     <div class="col-md-6 border border-3 shadow rounded-3 card">
       <canvas id="myChart" width="400" height="250"></canvas>
     </div>
-    <div class="col-md-6">
-
-    </div>
+    <div class="col-md-6"></div>
   </div>
 {% endblock %}
 {% block  body_javascript %}
@@ -67,9 +68,7 @@
 
         // The data for our dataset
         data: {
-          labels:
-          {{ dates|raw }}
-          ,
+          labels: {{ dates|raw }},
           datasets: [
             {
               label: 'Nouveaux usagers',

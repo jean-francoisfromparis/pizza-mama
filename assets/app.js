@@ -1,3 +1,6 @@
+import './styles/app.scss';
+import { card, Toast, Popover } from 'bootstrap';
+// import './bootstrap';
 /*
  * Welcome to your app's main JavaScript file!
  *
@@ -6,10 +9,9 @@
  */
 
 // any CSS you import will output into a single css file (app.css in this case)
-import './styles/app';
+
 
 // start the Stimulus application
-import './bootstrap';
-import './jquery';
-// import { Chart, registerables } from 'chart.js';
-// Chart.register(...registerables);
+
+import $ from 'jquery';
+global.$ = $;
