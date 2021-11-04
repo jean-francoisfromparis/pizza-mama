@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PresentationController!
+{% endblock %}
+
+{% block body %}
+  <div class="row intro">
+    <div>
+      <div class="rounded-circle position-relative circle-intro start-50 translate-middle-x"><img src="{{ asset('build/images/logo/logo.png') }}" class="rounded mx-auto logo start-50 translate-middle-x" alt="logo"></div>
+      <div class="col-12"><img src="{{ asset('build/images/intro/pizza-aux-asperges.jpg') }}" class="w-100 landing-image" alt="landing page pizza"></div>
+      <div class="menu-container bottom-0 start-50 translate-middle-x ">{% include "includes/menu.html.twig" %}</div>
+    </div>
+    <div class="stage">
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+    </div>
+
+    <p>{% trans %}Bonjour et Bienvenue{% endtrans %}
+      <span class="typed-text"></span>
+      <span class="cursor">&nbsp;</span>
+    </p>
+  </div>
+</div>{% endblock %}
