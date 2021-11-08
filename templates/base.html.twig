@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="{% block meta_description %}{% trans %}Pizza- Mama - Pizze et pâtes à l'italienne{% endtrans %}{% endblock %}">
+    <link rel="{{ asset('images/logo/logo.png') }}" href="" type="image/x-icon">
+    <link rel="icon" href="{{ asset('images/logo/logo.png') }}" type="image/x-icon">
+
     <title>
       {% block title %}
-        Pizza-Mama
+        Pizza- Mama - Pizze et pâtes à l'italienne
       {% endblock %}
     </title>
     {% block stylesheets %}
@@ -18,7 +21,7 @@
     {% endblock %}
   </head>
   <body>
-  <div class="container-fluid">
+  <div class="container-fluid g-0">
     {% block body %}{% endblock %}
     </div>
   </body>
