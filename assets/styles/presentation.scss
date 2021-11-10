@@ -26,7 +26,7 @@ body {
   position: sticky;
   top: 0;
   height: 7rem;
-  z-index: -10;
+  z-index: 100;
 }
 
 .stage-logo {
@@ -58,6 +58,7 @@ body {
   height: 100%;
   width: 100%;
   position: fixed;
+  z-index: 20;
   top: 0px;
   color: whitesmoke;
   letter-spacing: -1px;
@@ -170,7 +171,7 @@ body {
 .band {
   position: -webkit-sticky;
   position: sticky;
-  z-index: -900;
+  z-index: 9;
   width: 100vw;
   height: 5rem;
 }
@@ -180,7 +181,7 @@ body {
   // top:15rem;
   width: 100vw;
   height: 20vh;
-  z-index: -100;
+  z-index: 10;
   // background-color: $bg-standard !important;
 }
 
@@ -189,7 +190,7 @@ body {
   top: 100px;
   width: 100vw;
   height: 10rem;
-  z-index: -900;
+  z-index: 90;
   background-color: $bg-standard !important
 }
 
@@ -199,10 +200,47 @@ body {
   left: 50vw;
 }
 
-.product-card {
-  z-index: -1000;
-}
+// .product-card {
+//   // z-index: -100;
+// }
 
 .text-presentation {
   color:crimson;
+}
+
+.item-card{
+  transition:0.5s;
+  cursor:pointer;
+}
+
+.item-card-title{
+  transition:1s;
+  cursor:pointer;
+}
+
+.card:hover{
+  transform: scale(1.05);
+  box-shadow: 10px 10px 15px rgba(0,0,0,0.3);
+}
+
+.card::before, .card::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: scale3d(0, 0, 1);
+  transition: transform .3s ease-out 0s;
+  background: rgba(255, 255, 255, 0.1);
+  content: '';
+  pointer-events: none;
+}
+.card::before {
+  transform-origin: left top;
+}
+.card::after {
+  transform-origin: right bottom;
+}
+.card:hover::before, .card:hover::after, .card:focus::before, .card:focus::after {
+  transform: scale3d(1, 1, 1);
 }
