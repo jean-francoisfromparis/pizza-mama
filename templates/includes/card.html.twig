@@ -1,41 +1,24 @@
-{# <div class="card item-card p-3 m-2 product-card rounded justify-content-around" style="max-width: 440px;" id="{{product.id}}">
+<div class="card item-card p-3 m-2 product-card rounded justify-content-around" style="max-width: 354px; max-height:132px" id="{{ findOneById(id).id }}">
+ <input type="hidden" name="{{ findOneById(id).id }}" />
 						<div class="row g-0 align-items-center item">
 							<div class="col-md-4 ">
-								{% if product.photo %}
-									<img src="{{ asset('images/products/'~product.photo) }}" class="img-fluid img-thumbnail rounded-start  text-center" alt="{{product.name}}" style="width:150px">
+								{% if  findOneById(id).photo %}
+									<img src="{{ asset('images/products/' ~ findOneById(id).photo) }}" class="img-fluid img-thumbnail rounded-start  text-center" alt="{{findOneById(id).name}}" style="width:96px; height:96px">
 								{% else %}
-									<img src="{{ asset('images/imageDefault.jpg') }}" class="img-fluid rounded-start text-center" alt="image par défaut" style="width:150px">
+									<img src="{{ asset('images/imageDefault.jpg') }}" class="img-fluid rounded-start text-center" alt="image par défaut"style="width:96px; height:96px">
 								{% endif %}
 							</div>
 							<div class="col-md-8 align-self-center">
 								<div class="card-body">
-									<h5 class="card-title item-card-title fs-3">{{ product.name }}</h5>
+									<h5 class="card-title item-card-title fs-4"> {{ findOneById(id).name }}</h5>
 
 									<div class="card-text text-end mt-3">
-										<small class="text-muted fs-4 me-3">{{(product.price / 100) | format_currency('EUR', locale='FR_fr')  }}</small>
-										<button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalplat{{product.id}} ">voir
+										<small class="text-muted fs-4 me-3">{{( findOneById(id).price / 100) | format_currency('EUR', locale='FR_fr')}}</small>
+										<button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalpla{{ findOneById(id).id }}">voir
 										</button>
-
 									</a>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div> #}
-
-<div class="card product-card mb-3 mx-auto" style="width: 286px; min-height:25rem">
-  <input type="hidden" name="{{ findOneById(id).id }}" />
-  <img src="{{ asset('images/products/' ~ findOneById(id).photo) }}"
-    class="card-img-top"
-    alt="..."
-    width="286"
-    height="180" />
-  <div class="card-body">
-    <h5 class="card-title item-card-title fs-3">
-      {{ findOneById(id).name }}
-    </h5>
-    <p class="card-text end-0"></p>
-			<small class="text-muted fs-4 me-3">{{( findOneById(id).price / 100) | format_currency('EUR', locale='FR_fr')}}</small>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div>
+				</div>
