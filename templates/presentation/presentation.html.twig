@@ -1,178 +1,178 @@
 {% extends '/presentation/layout.html.twig' %}
 
 {% block title %}
-  {{ parent() }} | Vous pouvez commander !
+  {{ parent() }}
+  | Vous pouvez commander !
 {% endblock %}
 
 {% block stylesheets %}
   {{ parent() }}
+
 {% endblock %}
 
 {% block body %}
   {% include '/includes/navbar.html.twig' %}
   <div class="row show m-0"></div>
   <div class="row text-center m-0 product-card">
-    <div class="title-bar">
-    </div>
-  </div>
-
-   <div class="row text-center m-0 product-card mb-5">
-    <h2 class="fs-2 mb-5 product-card">
-      <img src="{{ asset('images/logo/pizza.png') }}"
-        alt=""
-        width="100"
-        height="100" />&nbsp;<span class="text-decoration-underline">
-        {% trans %}Pizze{% endtrans %}
-      </span>
-    </h2>
-    <div class="col-md-3"></div>
-    <div class="col-md-5">
-      <div class="row mb-4">
-        {% for id in 1..(AllProducts|length) %}
-          {% if findOneById(id).category.id == 1 %}
-            {% if id % 2 == 0 %}
-              <div class="col-md-6">
-                {% include '/includes/card.html.twig' %}
-              </div>
-            {% endif %}
-            {% if id % 2 != 0 %}
-              <div class="col-md-6">
-                {% include '/includes/card.html.twig' %}
-              </div>
-            {% endif %}
-          {% endif %}
-        {% endfor %}
+    <div class="title-bar text-start">
+     <div id="list-example" class="list-group col-md-1 mt-5">  {# TODOs: mettre le list groupe sur un select avec défilement de la valeur active#}
+        <a class="list-group-item list-group-item-action" href="#list-item-1">Pizze</a>
+        <a class="list-group-item list-group-item-action" href="#list-item-2">Pâtes</a>
+        <a class="list-group-item list-group-item-action" href="#list-item-3">Boissons 33cl</a>
+        <a class="list-group-item list-group-item-action" href="#list-item-4">Boissons 50cl</a>
+        <a class="list-group-item list-group-item-action" href="#list-item-4">Dessert</a>
       </div>
     </div>
-    <div class="col-md-4"></div>
   </div>
-
-  <div class="row text-center m-0 product-card mb-5">
-    <h2 class="fs-2 mb-5 product-card">
-      <img src="{{ asset('images/logo/pasta.png') }}"
-        alt=""
-        width="100"
-        height="100" />&nbsp;<span class="text-decoration-underline">
-        {% trans %}Pâtes{% endtrans %}
-      </span>
-    </h2>
-    <div class="col-md-3"></div>
-    <div class="col-md-5">
-      <div class="row mb-4">
-        {% for id in 1..(AllProducts|length) %}
-          {% if findOneById(id).category.id == 2 %}
-            {% if id % 2 == 0 %}
-              <div class="col-md-6">
-                {% include '/includes/card.html.twig' %}
-              </div>
+  <div class="spied" data-bs-spy="scroll" data-bs-target="#list-example" data-bs-offset="0" class="scrollspy-example" tabindex="0">
+    <div class="row text-center m-0 product-card mb-5"  id="list-item-1">
+      <h2 class="fs-2 mb-5 product-card">
+        <img src="{{ asset('images/logo/pizza.png') }}" alt="" width="100" height="100"/>&nbsp;<span class="text-decoration-underline">
+          {% trans %}Pizze{% endtrans %}
+        </span>
+      </h2>
+      <div class="col-md-3"></div>
+      <div class="col-md-5">
+        <div class="row mb-4">
+          {% for id in 1..(AllProducts|length) %}
+            {% if findOneById(id).category.id == 1 %}
+              {% if id % 2 == 0 %}
+                <div class="col-md-6">
+                  {% include '/includes/card.html.twig' %}
+                </div>
+              {% endif %}
+              {% if id % 2 != 0 %}
+                <div class="col-md-6">
+                  {% include '/includes/card.html.twig' %}
+                </div>
+              {% endif %}
             {% endif %}
-            {% if id % 2 != 0 %}
-              <div class="col-md-6">
-                {% include '/includes/card.html.twig' %}
-              </div>
-            {% endif %}
-          {% endif %}
-        {% endfor %}
+          {% endfor %}
+        </div>
       </div>
+      <div class="col-md-4"></div>
     </div>
-    <div class="col-md-4"></div>
+
+    <div class="row text-center m-0 product-card mb-5">
+      <h2 class="fs-2 mb-5 product-card" id="list-item-2">
+        <img src="{{ asset('images/logo/pasta.png') }}" alt="" width="100" height="100"/>&nbsp;<span class="text-decoration-underline">
+          {% trans %}Pâtes{% endtrans %}
+        </span>
+      </h2>
+      <div class="col-md-3"></div>
+      <div class="col-md-5">
+        <div class="row mb-4">
+          {% for id in 1..(AllProducts|length) %}
+            {% if findOneById(id).category.id == 2 %}
+              {% if id % 2 == 0 %}
+                <div class="col-md-6">
+                  {% include '/includes/card.html.twig' %}
+                </div>
+              {% endif %}
+              {% if id % 2 != 0 %}
+                <div class="col-md-6">
+                  {% include '/includes/card.html.twig' %}
+                </div>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+      <div class="col-md-4"></div>
+    </div>
+
+    <div class="row text-center m-0 product-card mb-5">
+      <h2 class="fs-2 mb-5 product-card" id="list-item-3">
+        <img src="{{ asset('images/logo/can.png') }}" alt="" width="100" height="100"/>&nbsp;<span class="text-decoration-underline">
+          {% trans %}Boissons 33cl{% endtrans %}
+        </span>
+      </h2>
+      <div class="col-md-3"></div>
+      <div class="col-md-5">
+        <div class="row mb-4">
+          {% for id in 1..(AllProducts|length) %}
+            {% if findOneById(id).category.id == 5 %}
+              {% if id % 2 == 0 %}
+                <div class="col-md-6">
+                  {% include '/includes/card.html.twig' %}
+                </div>
+              {% endif %}
+              {% if id % 2 != 0 %}
+                <div class="col-md-6">
+                  {% include '/includes/card.html.twig' %}
+                </div>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+      <div class="col-md-4"></div>
+    </div>
+
+    <div class="row text-center m-0 product-card mb-5">
+      <h2 class="fs-2 mb-5 product-card" id="list-item-4">
+        <img src="{{ asset('images/logo/bottle50cl.png') }}" alt="" width="100" height="100"/>&nbsp;<span class="text-decoration-underline">
+          {% trans %}Boissons 50cl{% endtrans %}
+        </span>
+      </h2>
+      <div class="col-md-3"></div>
+      <div class="col-md-5">
+        <div class="row mb-4">
+          {% for id in 1..(AllProducts|length) %}
+            {% if findOneById(id).category.id == 6 %}
+              {% if id % 2 == 0 %}
+                <div class="col-md-6">
+                  {% include '/includes/card.html.twig' %}
+                </div>
+              {% endif %}
+              {% if id % 2 != 0 %}
+                <div class="col-md-6">
+                  {% include '/includes/card.html.twig' %}
+                </div>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+      <div class="col-md-4"></div>
+    </div>
+
+    <div class="row text-center m-0 product-card mb-5">
+      <h2 class="fs-2 mb-5 product-card" id="list-item-5">
+        <img src="{{ asset('images/logo/dessert.png') }}" alt="" width="100" height="100"/>&nbsp;<span class="text-decoration-underline">
+          {% trans %}Dessert{% endtrans %}
+        </span>
+      </h2>
+      <div class="col-md-3"></div>
+      <div class="col-md-5">
+        <div class="row mb-4">
+          {% for id in 1..(AllProducts|length) %}
+            {% if findOneById(id).category.id == 7 %}
+              {% if id % 2 == 0 %}
+                <div class="col-md-6">
+                  {% include '/includes/card.html.twig' %}
+                </div>
+              {% endif %}
+              {% if id % 2 != 0 %}
+                <div class="col-md-6">
+                  {% include '/includes/card.html.twig' %}
+                </div>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+      <div class="col-md-4"></div>
+    </div>
   </div>
+  {% include '/includes/menu.html.twig' %}
+  {% include '/includes/footer.html.twig' %}
 
-  <div class="row text-center m-0 product-card mb-5">
-    <h2 class="fs-2 mb-5 product-card">
-      <img src="{{ asset('images/logo/can.png') }}"
-        alt=""
-        width="100"
-        height="100" />&nbsp;<span class="text-decoration-underline">
-        {% trans %}Boissons 33cl{% endtrans %}
-      </span>
-    </h2>
-    <div class="col-md-3"></div>
-    <div class="col-md-5">
-      <div class="row mb-4">
-        {% for id in 1..(AllProducts|length) %}
-          {% if findOneById(id).category.id == 5 %}
-            {% if id % 2 == 0 %}
-              <div class="col-md-6">
-                {% include '/includes/card.html.twig' %}
-              </div>
-            {% endif %}
-            {% if id % 2 != 0 %}
-              <div class="col-md-6">
-                {% include '/includes/card.html.twig' %}
-              </div>
-            {% endif %}
-          {% endif %}
-        {% endfor %}
-      </div>
-    </div>
-    <div class="col-md-4"></div>
-  </div>>
 
-  <div class="row text-center m-0 product-card mb-5">
-    <h2 class="fs-2 mb-5 product-card">
-      <img src="{{ asset('images/logo/bottle50cl.png') }}"
-        alt=""
-        width="100"
-        height="100" />&nbsp;<span class="text-decoration-underline">
-        {% trans %}Boissons 50cl{% endtrans %}
-      </span>
-    </h2>
-    <div class="col-md-3"></div>
-    <div class="col-md-5">
-      <div class="row mb-4">
-        {% for id in 1..(AllProducts|length) %}
-          {% if findOneById(id).category.id == 6 %}
-            {% if id % 2 == 0 %}
-              <div class="col-md-6">
-                {% include '/includes/card.html.twig' %}
-              </div>
-            {% endif %}
-            {% if id % 2 != 0 %}
-              <div class="col-md-6">
-                {% include '/includes/card.html.twig' %}
-              </div>
-            {% endif %}
-          {% endif %}
-        {% endfor %}
-      </div>
-    </div>
-    <div class="col-md-4"></div>
-  </div>
-
-  <div class="row text-center m-0 product-card mb-5">
-    <h2 class="fs-2 mb-5 product-card">
-      <img src="{{ asset('images/logo/dessert.png') }}"
-        alt=""
-        width="100"
-        height="100" />&nbsp;<span class="text-decoration-underline">
-        {% trans %}Dessert{% endtrans %}
-      </span>
-    </h2>
-    <div class="col-md-3"></div>
-    <div class="col-md-5">
-      <div class="row mb-4">
-        {% for id in 1..(AllProducts|length) %}
-          {% if findOneById(id).category.id == 7 %}
-            {% if id % 2 == 0 %}
-              <div class="col-md-6">
-                {% include '/includes/card.html.twig' %}
-              </div>
-            {% endif %}
-            {% if id % 2 != 0 %}
-              <div class="col-md-6">
-                {% include '/includes/card.html.twig' %}
-              </div>
-            {% endif %}
-          {% endif %}
-        {% endfor %}
-      </div>
-    </div>
-    <div class="col-md-4"></div>
-  </div>
 
 {% endblock %}
 
 {% block javascripts %}
-  {# {{ parent() }} #}
+  {{ parent() }}
+   {{ encore_entry_script_tags('presentation') }}
 {% endblock %}

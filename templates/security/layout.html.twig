@@ -4,8 +4,10 @@
   {# {{ parent() }} #}
 {% endblock %}
 
-{% block body %}{% endblock %}
+{% block body %}
+
+{% endblock %}
 
 {% block javascripts %}
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+ {{ encore_entry_script_tags('login') }}
  {% endblock %}
