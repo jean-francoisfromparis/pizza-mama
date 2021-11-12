@@ -3,6 +3,7 @@ $bg-central-zone: #FFFAFA;
 $bg-central-card: darkgray;
 
 body {
+  position: relative;
   background-color: $bg-standard !important;
   width: 100vw;
   height: 400vh !important;
@@ -23,6 +24,7 @@ body {
 }
 
 .logo-bar {
+  position: -webkit-sticky;
   position: sticky;
   top: 0;
   height: 7rem;
@@ -30,14 +32,15 @@ body {
 }
 
 .stage-logo {
-  height: 12rem;
-  width: 12rem;
-  margin: 0 auto;
+  position: -webkit-sticky;
   position: sticky;
   top: 1vh;
   right: 0;
   bottom: 0;
   left: 0;
+  height: 12rem;
+  width: 12rem;
+  margin: 0 auto;
   perspective: 9999px;
   transform-style: preserve-3d;
 }
@@ -174,6 +177,7 @@ body {
   z-index: 9;
   width: 100vw;
   height: 5rem;
+  border-bottom: 2px solid crimson;
 }
 
 .show {
@@ -189,9 +193,10 @@ body {
   position: fixed;
   top: 100px;
   width: 100vw;
-  height: 10rem;
+  height: 8rem;
   z-index: 90;
-  background-color: $bg-standard !important
+  background-color: $bg-standard !important;
+  border-bottom: 2px solid crimson;
 }
 
 .title {
@@ -243,4 +248,49 @@ body {
 }
 .card:hover::before, .card:hover::after, .card:focus::before, .card:focus::after {
   transform: scale3d(1, 1, 1);
+}
+
+.Site-menu{
+  position: -webkit-sticky;
+  position: sticky;
+  transform: translateX(-15%);
+  bottom:0;
+}
+
+.spied {
+  position: relative;
+}
+
+.list-group-item:active {
+  z-index: 2;
+  color: #fff;
+  background-color: crimson;
+  border-color:  rgba(220, 20, 60, 0.198);
+}
+
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 480px) {
+img.img-fluid.img-thumbnail.rounded-start {
+    position:absolute;
+    margin: auto auto;
+    left: 10px;
+    float:left ;
+  }
+
+  .card-text, .card-title {
+    text-align: end;
+    font-size: 16px !important;
+  }
+.show {
+  height: 7vh;
+}
+  //TODOs mettre le css pour le Site-menu
+
+  .Site-menu {
+    position: -webkit-sticky;
+    position: sticky;
+    transform: translateX(28%);
+    bottom:0;
+  }
 }

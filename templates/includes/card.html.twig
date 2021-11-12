@@ -3,7 +3,7 @@
 						<div class="row g-0 align-items-center item">
 							<div class="col-md-4 ">
 								{% if  findOneById(id).photo %}
-									<img src="{{ asset('images/products/' ~ findOneById(id).photo) }}" class="img-fluid img-thumbnail rounded-start  text-center" alt="{{findOneById(id).name}}" style="width:96px; height:96px">
+									<img src="{{ asset('images/products/' ~ findOneById(id).photo) }}" class="img-fluid img-thumbnail rounded-start" alt="{{findOneById(id).name}}" style="width:96px; height:96px">
 								{% else %}
 									<img src="{{ asset('images/imageDefault.jpg') }}" class="img-fluid rounded-start text-center" alt="image par défaut"style="width:96px; height:96px">
 								{% endif %}
