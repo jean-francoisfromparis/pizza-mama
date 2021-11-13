@@ -1,24 +1,25 @@
-<div class="card item-card p-3 m-2 product-card rounded justify-content-around" style="max-width: 354px; max-height:132px" id="{{ findOneById(id).id }}">
+<div class="card item-card p-3 m-2 product-card rounded-3 justify-content-around" style="max-width: 354px; max-height:132px" id="{{ findOneById(id).id }}">
  <input type="hidden" name="{{ findOneById(id).id }}" />
-						<div class="row g-0 align-items-center item">
-							<div class="col-md-4 ">
-								{% if  findOneById(id).photo %}
-									<img src="{{ asset('images/products/' ~ findOneById(id).photo) }}" class="img-fluid img-thumbnail rounded-start" alt="{{findOneById(id).name}}" style="width:96px; height:96px">
-								{% else %}
-									<img src="{{ asset('images/imageDefault.jpg') }}" class="img-fluid rounded-start text-center" alt="image par défaut"style="width:96px; height:96px">
-								{% endif %}
-							</div>
-							<div class="col-md-8 align-self-center">
-								<div class="card-body">
-									<h5 class="card-title item-card-title fs-4"> {{ findOneById(id).name }}</h5>
+            <div class="row g-0 align-items-center item">
+              <div class="col-md-4 ">
+                {% if  findOneById(id).photo %}
+                  <img src="{{ asset('images/products/' ~ findOneById(id).photo) }}" class="img-fluid img-thumbnail rounded-start" alt="{{findOneById(id).name}}" style="width:96px; height:96px">
+                {% else %}
+                  <img src="{{ asset('images/imageDefault.jpg') }}" class="img-fluid rounded-start text-center" alt="image par défaut"style="width:96px; height:96px">
+                {% endif %}
+              </div>
+              <div class="col-md-8 align-self-center">
+                <div class="card-body">
+                  <h5 class="card-title item-card-title fs-4"> {{ findOneById(id).name }}</h5>
 
-									<div class="card-text text-end mt-3">
-										<small class="text-muted fs-4 me-3">{{( findOneById(id).price / 100) | format_currency('EUR', locale='FR_fr')}}</small>
-										<button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalpla{{ findOneById(id).id }}">voir
-										</button>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+                  <div class="card-text text-end mt-3">
+                    <small class="text-muted fs-4 me-3">{{( findOneById(id).price / 100) | format_currency('EUR', locale='FR_fr')}}</small>
+                      <a href=" {{path('cart_add', {'id':findOneById(id).id}) }} " class="btn btn-danger btn-sm float-right"><i class="fab fa-opencart"></i></a>
+                    {# <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalpla{{ findOneById(id).id }}">voir
+                    </button> #}
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
