@@ -18,6 +18,10 @@ body {
   z-index: -50;
 }
 
+.bg-logo-fade {
+  background-color: $bg-logo;
+}
+
 .bg-lightgray {
   background-color: $bg-standard;
 }
@@ -272,7 +276,7 @@ body {
   z-index: 2;
   color: #fff;
   background-color: crimson !important;
-  border-color: rgba(220, 20, 60, 0.198) !important;
+  border-color: $bg-logo!important;
 }
 
 .bg-title {
@@ -284,6 +288,10 @@ body {
   position: sticky;
   top: 240px;
   margin-left: 1250px;
+}
+
+.modal-text {
+  font-size: 16px !important;
 }
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {

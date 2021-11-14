@@ -18,26 +18,25 @@
       </div>
     {% endif %}
     {#
-       Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-       See https://symfony.com/doc/current/security/remember_me.html
+                   Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+                   See https://symfony.com/doc/current/security/remember_me.html
 
-                 <div class="checkbox mb-3">
-                     <label>
-                         <input type="checkbox" name="_remember_me"> Remember me
-                     </label>
-                 </div>
-             #}
+                             <div class="checkbox mb-3">
+                                 <label>
+                                     <input type="checkbox" name="_remember_me"> Remember me
+                                 </label>
+                             </div>
+                         #}
     <div class="row position">
       <div class="col-md-4"></div>
       <div class="col-md-4">
         <div class="">
           <h1 class="h3 mb-5 font-weight-normal text-center position1">{% trans %}Connectez-vous s'il vous plaît !{% endtrans %}</h1>
           <div class="card my-5 border boder-2 mx-auto position2 position-relative" style="max-width: 540px;">
-           <div class="rounded-circle circle position2 position-absolute top-0 start-50 translate-middle"></div>
+            <div class="rounded-circle circle position2 position-absolute top-0 start-50 translate-middle"></div>
             <div class="row g-0">
               <div class="col-md-6">
-                <img
-                src="{{ asset('build/images/pizza.jpg') }}" class="img-fluid rounded-start" alt="miam une pizza">
+                <img src="{{ asset('build/images/pizza.jpg') }}" class="img-fluid rounded-start" alt="miam une pizza">
               </div>
               <div class="col-md-6">
                 <div class="card-body text-center justify-content-center my-5">
@@ -45,11 +44,9 @@
                   <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control w-75 mx-auto my-2" autocomplete="email" required autofocus>
                   <label for="inputPassword">{% trans %}Mot de passe{% endtrans %}</label>
                   <input type="password" name="password" id="inputPassword" class="form-control w-75 mx-auto my-2" autocomplete="current-password" required>
-                  <p class="card-text text-center my-5">
-                    <button class="btn btn-lg btn-primary my-2" type="submit">
+                     <button class="btn btn-lg btn-primary my-5" type="submit">
                       {% trans %}Connexion{% endtrans %}
                     </button>
-                  </p>
                 </div>
               </div>
             </div>

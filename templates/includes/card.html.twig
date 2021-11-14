@@ -1,25 +1,72 @@
 <div class="card item-card p-3 m-2 product-card rounded-3 justify-content-around" style="max-width: 354px; max-height:132px" id="{{ findOneById(id).id }}">
- <input type="hidden" name="{{ findOneById(id).id }}" />
-            <div class="row g-0 align-items-center item">
-              <div class="col-md-4 ">
-                {% if  findOneById(id).photo %}
-                  <img src="{{ asset('images/products/' ~ findOneById(id).photo) }}" class="img-fluid img-thumbnail rounded-start" alt="{{findOneById(id).name}}" style="width:96px; height:96px">
-                {% else %}
-                  <img src="{{ asset('images/imageDefault.jpg') }}" class="img-fluid rounded-start text-center" alt="image par défaut"style="width:96px; height:96px">
-                {% endif %}
-              </div>
-              <div class="col-md-8 align-self-center">
-                <div class="card-body">
-                  <h5 class="card-title item-card-title fs-4"> {{ findOneById(id).name }}</h5>
 
-                  <div class="card-text text-end mt-3">
-                    <small class="text-muted fs-4 me-3">{{( findOneById(id).price / 100) | format_currency('EUR', locale='FR_fr')}}</small>
-                      <a href=" {{path('cart_add', {'id':findOneById(id).id}) }} " class="btn btn-danger btn-sm float-right"><i class="fab fa-opencart"></i></a>
-                    {# <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalpla{{ findOneById(id).id }}">voir
-                    </button> #}
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+  <input type="hidden" name="{{ findOneById(id).id }}"/>
+
+  <div class="row g-0 align-items-center item">
+
+    <div class="col-md-4 ">
+      {% if  findOneById(id).photo %}
+        <img src="{{ asset('images/products/' ~ findOneById(id).photo) }}" class="img-fluid img-thumbnail rounded-start" alt="{{findOneById(id).name}}" style="width:96px; height:96px">
+      {% else %}
+        <img src="{{ asset('images/imageDefault.jpg') }}" class="img-fluid rounded-start text-center" alt="image par défaut" style="width:96px; height:96px">
+      {% endif %}
+    </div>
+    <div class="col-md-8 align-self-center">
+      <div class="card-body">
+        <h5 class="card-title item-card-title fs-5">{{ findOneById(id).name }}</h5>
+        <div class="card-text text-end mt-3">
+          <small class="text-muted fs-4 me-3">{{( findOneById(id).price / 100) | format_currency('EUR', locale='FR_fr')}}</small>
+          <a data-fancybox="dialog" data-src="#modal{{ findOneById(id).id }}" href="javascript:;" data-options='{"touch": true, "smallBtn" : false}'>
+            <button type="button" class="btn btn-outline-primary fs-6">voir
+            </button>
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+</div></div>{# modal d'affichage des plats #}<div class="card" id="modal{{ findOneById(id).id }}" style="display:none; max-width:560px; max-height:780px">
+<div class="row card-body overflow-scroll">
+  <div class="card-header bg-logo-fade rounded-3 mb-2">
+    <h5 class="">
+      {{ findOneById(id).name }}</h5>
+  </div>
+  <img src="{{ asset('images/products/'~ findOneById(id).photo) }}" class="img-fluid img-thumbnail mx-auto d-block" alt=" {{ findOneById(id).name }}" style="width:300px">
+  <div class="col-12"><span>{{ findOneById(id).description }}</span></div>
+  <div class="col-8"><input type="checkbox" name="champignon" id="champignon" class="me-3"><span>supp Champignon</span></div><div class="col-4 text-end"><i class="far fa-minus-square me-4"></i>2<i class="far fa-plus-square ms-4"></i></div>
+  <div class="col-12"><input type="checkbox" name="" id="" class="me-3"><span>supp Piments verts</span></div> {#TODOs mettre en place les suppléments#}
+  <div class="col-12"><input type="checkbox" name="" id="" class="me-3"><span>supp Oignons</span></div>
+  <div class="col-12"><input type="checkbox" name="" id="" class="me-3"><span>supp Capres</span></div>
+  <div class="col-12"><input type="checkbox" name="" id="" class="me-3"><span>supp Poivrons</span></div>
+  <div class="col-12"><input type="checkbox" name="" id="" class="me-3"><span>supp Courgettes</span></div>
+  <div class="col-12"><input type="checkbox" name="" id="" class="me-3"><span>supp Aubergines</span></div>
+  <div class="col-12"><input type="checkbox" name="" id="" class="me-3"><span>supp Olives</span></div>
+  <div class="col-12"><input type="checkbox" name="" id="" class="me-3"><span>supp Tomates cerises</span></div>
+  <div class="col-12"><input type="checkbox" name="" id="" class="me-3"><span>supp Roquettes</span></div>
+  <div class="col-12"><input type="checkbox" name="" id="" class="me-3"><span>supp Nduja</span></div>
+  <div class="col-12"><input type="checkbox" name="" id="" class="me-3"><span>supp Gorgonzola</span></div>
+  <div class="col-12"><input type="checkbox" name="" id="" class="me-3"><span>supp Jambon Blanc</span></div>
+  <div class="col-12"><input type="checkbox" name="" id="" class="me-3"><span>supp Spinata Calabra</span></div>
+  <div class="col-12"><input type="checkbox" name="" id="" class="me-3"><span>supp Speck</span></div>
+  <div class="col-12"><input type="checkbox" name="" id="" class="me-3"><span>supp Bresaola</span></div>
+  <div class="col-12"><input type="checkbox" name="" id="" class="me-3"><span>supp Salame</span></div>
+  <div class="col-12"><input type="checkbox" name="" id="" class="me-3"><span>supp Pepperoni</span></div>
+
+
+
+</div>
+  <div class="row card-footer border-top-0">
+    <a href=" {{path('cart_add', {'id':findOneById(id).id}) }} " class="btn btn-danger btn-sm text-end col-1">
+      <i class="fab fa-opencart"></i>
+    </a>
+  </div>
+</div>{# <button data-fancybox data-src="#dialog-content">
+          HTML element
+        </button>
+
+        <div id="modal{{ findOneById(id).id }}" style="display:none;" class="animated-modal">
+          <h2>Hello, world!</h2>
+          <p>
+            <input type="text" value="See if changes remain after closing the dialog" />
+          </p>
+        </div> #}

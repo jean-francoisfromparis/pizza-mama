@@ -1,4 +1,6 @@
 import './styles/presentation.scss';
+import "@fancyapps/ui/dist/fancybox.css";
+import { Fancybox, Carousel, Panzoom } from "@fancyapps/ui";
 // import { createPopper } from '@popperjs/core';
 import $ from 'jquery';
 global.$ = $;
@@ -16,3 +18,6 @@ var scrollSpy = new bootstrap.ScrollSpy(document.body, {
   target: '#list-example'
 })
 
+Fancybox.bind("[data-fancybox]", {
+  // Your options go here
+});
