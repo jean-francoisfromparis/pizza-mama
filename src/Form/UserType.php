@@ -20,7 +20,7 @@ class UserType extends AbstractType
                 'email',
                 EmailType::class,
                 [
-                'required' => true,
+                'required' => false,
                 'label' => false,
                 ]
             )
@@ -28,7 +28,7 @@ class UserType extends AbstractType
                 'pseudo',
                 TextType::class,
                 [
-                'required' => true,
+                'required' => false,
                 'label' => false,
                 ]
             )
@@ -36,17 +36,10 @@ class UserType extends AbstractType
                 'password',
                 PasswordType::class,
                 [
-                'required' => true,
+                'required' => false,
                 'label' => false,
                 ]
             )
-            // ->add(
-            //     'createdAt',
-            //     DateTypeImmutable::class,
-            //     [
-
-            // ]
-            // )
             ->add(
                 'submit',
                 SubmitType::class,

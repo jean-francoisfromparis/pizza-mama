@@ -17,10 +17,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class PaymentController extends AbstractController
 {
     /**
-     * @Route("/checkout/{id}")
+     * @Route("/checkout")
      * @Template
      */
-    public function checkout($stripeSK, CartService $cartService, Request $request, User $user): Response
+    public function checkout($stripeSK, CartService $cartService, Request $request): Response
     {
         Stripe::setApiKey($stripeSK);
         $amount = $cartService->getTotal();
@@ -45,19 +45,17 @@ class PaymentController extends AbstractController
         return $this->redirect(
             $session->url,
             303,
-            $user->getId(),
         );
     }
 
     /**
      * Successurl
-     * @Route("/success-url/{id}")
+     * @Route("/success-url")
      * @Template
      * @return Response
      */
-    public function successUrl(User $user)
+    public function successUrl()
     {
-        $pseudo = $user->getPseudo();
         return  [];
     }
 
