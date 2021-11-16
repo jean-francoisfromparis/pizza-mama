@@ -4,7 +4,7 @@ namespace App\Entity;
 
 use App\Entity\Product;
 use Doctrine\ORM\Mapping as ORM;
-Use Gedmo\Mapping\Annotation as Gedmo;
+use Gedmo\Mapping\Annotation as Gedmo;
 use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;

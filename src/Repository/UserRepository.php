@@ -49,7 +49,7 @@ class UserRepository extends ServiceEntityRepository implements
      */
     public function countAllUsers()
     {
-        $queryBuilder= $this ->createQueryBuilder('a');
+        $queryBuilder = $this ->createQueryBuilder('a');
         $queryBuilder->select('COUNT(a.id) as value');
         return $queryBuilder->getQuery()->getSingleScalarResult();
     }

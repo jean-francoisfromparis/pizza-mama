@@ -3,12 +3,11 @@
 namespace App\Entity;
 
 use App\Entity\Category;
-
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ProductRepository;
 use Gedmo\Mapping\Annotation\SoftDeleteable;
 use Gedmo\Timestampable\Traits\Timestampable;
-Use Gedmo\Mapping\Annotation as Gedmo;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\HttpFoundation\File\File;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -49,7 +48,7 @@ class Product
     private $price;
 
     /**
-     * 
+     *
      * @ORM\Column(type="string", length=255)
      * @var string|null
      */

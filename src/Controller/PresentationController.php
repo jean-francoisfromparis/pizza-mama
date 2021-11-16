@@ -42,7 +42,7 @@ class PresentationController extends AbstractController
             'categories' => $AllCategories,
             'AllProducts' => $AllProducts,
             'items' => $cartService->getFullCart(),
-            'total' =>$cartService->getTotal(),
+            'total' => $cartService->getTotal(),
         ];
     }
 

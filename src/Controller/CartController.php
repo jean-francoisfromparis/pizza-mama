@@ -26,7 +26,7 @@ class CartController extends AbstractController
         return
         [
             'items' => $cartService->getFullCart(),
-            'total' =>$cartService->getTotal(),
+            'total' => $cartService->getTotal(),
             ];
     }
 

@@ -13,3 +13,5 @@
 4- composer require some-bundle - to install any bundle needed to dev your apps
 5- php bin/console make:auth - to create a security controller along with Authenticator controller
 6- symfony console make:admin:dashboard - to create the dashboard
+7- php code sniffer script : phpcs -v --standard=PSR12 --ignore=./src/Kernel.php ./src
+8- php code fixer script : phpcbf -v --standard=PSR12 --ignore=./src/Kernel.php ./src

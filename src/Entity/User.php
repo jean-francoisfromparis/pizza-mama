@@ -37,6 +37,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $email;
 
     /**
+     * @ORM\Column(type="string", length=180, unique=true)
+     */
+    private $pseudo;
+
+    /**
      * @ORM\Column(type="json")
      */
     private $roles = [];
@@ -64,7 +69,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function __toString()
     {
-        return $this->getId() . ' - ' . $this->email;
+            return sprintf('%s #%d', __CLASS__, $this->getId() . ' - ' . $this->email);
     }
 
     /**
@@ -221,6 +226,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setDeletedAt(?\DateTimeImmutable $deletedAt): self
     {
         $this->deletedAt = $deletedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of pseudo
+     */
+    public function getPseudo()
+    {
+        return $this->pseudo;
+    }
+
+    /**
+     * Set the value of pseudo
+     *
+     * @return  self
+     */
+    public function setPseudo($pseudo)
+    {
+        $this->pseudo = $pseudo;
 
         return $this;
     }

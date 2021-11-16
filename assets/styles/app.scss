@@ -204,6 +204,10 @@ body {
   }
 }
 
+.text-pizza {
+  color:crimson !important;
+}
+
 .menu-container {
   position: absolute;
   top: 65vh;
@@ -277,4 +281,22 @@ p span.cursor.typing {
 
 .jfl {
   font: 10rem 'Alex Brush', cursive, 'Roboto', 'Trebuchet MS', Helvetica, sans-serif;
+}
+
+.btn-default {
+  color: crimson !important;
+  border-color: crimson !important;
+}
+
+.form-control {
+  border-color: crimson; //TODOs mettre la variable globale bg-fade
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+.pizza-circle {
+background-image: url(../images/circle-pizza.jpg);
+}
+.margintop{
+  margin-top: 40px;
+}
 }
