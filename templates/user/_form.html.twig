@@ -1,0 +1,32 @@
+{{ form_start(form) }}
+    {# {{ include('user/_form.html.twig') }} #}
+    {{ form_row(form.email,
+    {'attr': {
+        'class': 'mb-4 margintop',
+       ' row_attr':'form-floating',
+       'placeholder': 'email',
+        }})
+    }}
+    {{ form_row(form.pseudo,
+    {'attr': {
+        'class': 'mb-4',
+       ' row_attr':'form-floating',
+       'placeholder': 'pseudo'|trans,
+        }}
+    )
+    }}
+    {{ form_row(form.password,
+    {'attr': {
+        'class': 'mb-4',
+       ' row_attr':'form-floating',
+       'placeholder': 'mot de passe'|trans,
+        }}
+    )
+     }}
+    {{ form_row(form.submit,
+    {'attr': {
+        'class': 'btn-default',
+        }}
+    )
+     }}
+{{ form_end(form) }}

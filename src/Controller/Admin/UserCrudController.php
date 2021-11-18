@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
@@ -54,6 +55,7 @@ class UserCrudController extends AbstractCrudController
                 ->setColumns('2')
                 ->onlyOnIndex(),
             EmailField::new('email')->setColumns('2'),
+            TextField::new('pseudo')->setColumns('2'),
             ArrayField::new('roles', 'Rôles')->setColumns('2'),
             DateTimeField::new('createdAt', 'Date d\'inscription')->setColumns(
                 '2'
@@ -67,6 +69,7 @@ class UserCrudController extends AbstractCrudController
             return [
                 IdField::new('id')->setColumns('col-2'),
                 EmailField::new('email')->setColumns('col-2'),
+                TextField::new('pseudo')->setColumns('2'),
                 ArrayField::new('roles')->setColumns('col-2'),
                 DateTimeField::new('createdAt')->setColumns('2'),
             ];

@@ -74,7 +74,8 @@ class ProductCrudController extends AbstractCrudController
             TextField::new('name', 'Nom')->addCssClass('col-3 fs-3'),
             TextEditorField::new('description', 'Description'),
             MoneyField::new(
-                'price', 'Prix HT'
+                'price',
+                'Prix HT'
             )
                 ->setCurrency(
                     'EUR'
@@ -89,7 +90,8 @@ class ProductCrudController extends AbstractCrudController
                 ->setFormTypeOption('allow_delete', false),
             BooleanField::new('status', 'Status'),
             AssociationField::new(
-                'category', 'Catégorie'
+                'category',
+                'Catégorie'
             )
                 ->setFormType(
                     EntityType::class

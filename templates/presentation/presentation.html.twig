@@ -6,8 +6,8 @@
 {% endblock %}
 
 {% block stylesheets %}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css"/>
   {{ parent() }}
-
 {% endblock %}
 
 {% block body %}
@@ -27,58 +27,58 @@
       </div>
     </div>
   </div>
-  <div class="spied" data-bs-spy="scroll" data-bs-target="#list-example" data-bs-offset="" class="scrollspy-example" tabindex="0">
+  <div class="spied" data-bs-spy="scroll" data-bs-target="#list-example" data-bs-offset="20" class="scrollspy-example" tabindex="0">
     <div class="row text-center m-0 product-card mb-5" id="list-item-1">
-            <div
-              class="card cart rounded-3 col-md-2">
-              {# cart #}
-              {% set vars = {'items': 'total'} %}
-              <h2 class="bg-title my-0">Panier</h2>
-              <div class="card-body">
-                {% if items | length > 0 %}
-                  <table class="table table-striped table-hover">
-                    <thead>
-                      <tr>
-                        <th>Produit</th>
-                        <th>Prix</th>
-                        <th>Qté</th>
-                        <th>Total</th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {% for item in items %}
-                        <tr>
-                          <td>{{ item.product.name }}</td>
-                          <td>{{ ( item.product.price / 100) | format_currency('EUR', locale='FR_fr') }}</td>
-                          <td>{{ item.quantity }}</td>
-                          <td>{{ (( item.quantity * item.product.price) / 100) | format_currency('EUR', locale='FR_fr') }}</td>
-                          <td>
-                            <a href=" {{ path('cart_remove', { 'id':item.product.id }) }} " class="btn btn-danger btn-sm  float-right" onclick="return confirm('⚠️ comfirmez vous la suppression de la ligne')">🗑️</a>
-                          </td>
-                          {# <td>
-                                                                                                                                                                                                                                                                                                                                      <a href=" {{path('add_cart', {'id':cart.plat.id}) }} " class="btn btn-danger btn-sm float-right"><i class="fab fa-opencart"></i></a>
-                                                                                                                                                                                                                                                                                                                                    </td> #}
-                        </tr>
+      <div
+        class="card cart rounded-3 col-md-3">
+        {# cart #}
+        {% set vars = {'items': 'total'} %}
+        <h2 class="bg-title my-0"> <a href=" {{path('user_new')}} ">Panier</a> </h2>
+        <div class="card-body">
+          {% if items | length > 0 %}
+            <table class="table table-striped table-hover">
+              <thead>
+                <tr>
+                  <th>Produit</th>
+                  <th>Prix</th>
+                  <th>Qté</th>
+                  <th>Total</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for item in items %}
+                  <tr>
+                    <td class="fs-6">{{ item.product.name }}</td>
+                    <td>{{ ( item.product.price / 100) | format_currency('EUR', locale='FR_fr') }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ (( item.quantity * item.product.price) / 100) | format_currency('EUR', locale='FR_fr') }}</td>
+                    <td>
+                      <a href=" {{ path('cart_remove', { 'id':item.product.id }) }} " class="btn btn-danger btn-sm  float-right" onclick="return confirm('⚠️ comfirmez vous la suppression de la ligne')">🗑️</a>
+                    </td>
+                    {# <td>
+                                                                                                                                                                                                                                                                                                                                                                              <a href=" {{path('add_cart', {'id':cart.plat.id}) }} " class="btn btn-danger btn-sm float-right"><i class="fab fa-opencart"></i></a>
+                                                                                                                                                                                                                                                                                                                                                                            </td> #}
+                  </tr>
 
-                      {% endfor %}
-                    </tbody>
-                    <tfoot>
-                      <tr>
-                        <td colspan="3" class="text-end">Total :
-                        </td>
-                        <td class="fw-bold fs-4">
-                          {{( total / 100) | format_currency('EUR', locale='FR_fr')}}
-                        </td>
-                        <td></td>
-                      </tr>
-                    </tfoot>
-                  </table>
-                {% else %}
-                  <h4 class="mb-2 text-danger text-center">Vous n'avez encore rien mis dans votre panier</h4>
-                {% endif %}
-              </div>
-            </div>
+                {% endfor %}
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="3" class="text-end">Total :
+                  </td>
+                  <td class="fw-bold fs-4">
+                    {{( total / 100) | format_currency('EUR', locale='FR_fr')}}
+                  </td>
+                  <td></td>
+                </tr>
+              </tfoot>
+            </table>
+          {% else %}
+            <h4 class="mb-2 text-danger text-center">Vous n'avez encore rien mis dans votre panier</h4>
+          {% endif %}
+        </div>
+      </div>
       <h2 class="fs-2 mb-5 product-card">
         <img src="{{ asset('images/logo/pizza.png') }}" alt="" width="100" height="100"/>&nbsp;<span class="text-decoration-underline">
           {% trans %}Pizze{% endtrans %}
@@ -229,6 +229,10 @@
     </div>
     {% include '/includes/menu.html.twig' %}
     {% include '/includes/footer.html.twig' %}
+    <script type="module">
+      Fancybox.bind("[data-fancybox]", { // Your options go here
+      });
+    </script>
   {% endblock %}
 
   {% block javascripts %}

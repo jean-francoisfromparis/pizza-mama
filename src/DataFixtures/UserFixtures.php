@@ -26,10 +26,11 @@ class UserFixtures extends Fixture
         // the password :password
         $hashPassword =
             '$2y$13$AIX/MadGpGDP/5991rEEJO4yiTGmWawgSZMKro9/FfyRWgThoQkcW';
-        for ($i = 0; $i <1500 ; $i++) {
+        for ($i = 0; $i < 1500; $i++) {
             $user = new User();
             $user
                 ->setEmail("user{$i}@email.fr")
+                ->setPseudo($faker->firstName)
                 // the password :password
                 ->setPassword($hashPassword)
                 ->setRoles(['ROLE_USER'])
@@ -40,6 +41,7 @@ class UserFixtures extends Fixture
             $user = new User();
             $user
                 ->setEmail("admin{$i}@email.fr")
+                ->setPseudo($faker->firstName)
                 // the password :password
                 ->setPassword($hashPassword)
                 ->setRoles(['ROLE_ADMIN'])
