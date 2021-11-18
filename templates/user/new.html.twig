@@ -11,7 +11,7 @@
     <div class="col-md-4">
       <div class="">
         <h1 class="h3 mb-5 font-weight-normal text-center position1">{% trans %}Inscrivez-vous s'il vous plaît !{% endtrans %}</h1>
-        <span class="d-block text-justify">{% trans %}Pour passer commande l'inscription n'est pas obligatoire. L'inscription nous permettra de vous faire profiter des promotions et des remises fidélités lors de leurs mises en places.{% endtrans %}</span>
+        <span class="d-block text-justify">{% trans %}Pour passer commande l'inscription n'est pas obligatoire. L'inscription nous permettra de vous faire profiter des promotions et des remises fidélités lors de leurs mises en places. Pour recevoir votre commande un pseudo est cependant nécessaire.{% endtrans %}</span>
         <div class="card my-5 border boder-2 mx-auto position2 position-relative" style="max-width: 540px;">
           <div class="rounded-circle circle position2 position-absolute top-0 start-50 translate-middle pizza-circle"></div>
           <div class="row g-0">
@@ -21,9 +21,9 @@
             <div class="col-md-6">
               <div class="card-body text-center justify-content-center my-5">
                 {{ include('user/_form.html.twig') }}
-                {% if items != 0 %}
-                     <a href=" {{path('app_payment_checkout')}} " class="btn btn-outline-primary mt-2">Commander sans s'inscrire</a>
-                {% endif %}
+
+                  {# <a href=" {{path('app_payment_checkout')}} " id="noInscription" class="btn btn-outline-primary mt-2">Commander sans s'inscrire</a> #}
+
               </div>
             </div>
           </div>
@@ -32,4 +32,23 @@
     </div>
     <div class="col-md-4"></div>
   </div>
+{# <script src=" {{asset('buttonHide.js')}} "></script> #}
+<script type="module">
+ /* console.log('test');
+$(document).ready(function () {
+  $('#noInscription').css( "display", "none" )
+  $('#user_submit').on('click',function()
+ {
+      if( $('#user_pseudo').length === 0 ) {
+          alert('Pour recevoir votre commande un pseudo est cependant nécessaire.');
+      }
+  })
+
+  if(('#user_pseudo').length > 2) {
+$('#noInscription').html(`<a href=" {{path('app_payment_checkout')}} " id="noInscription" class="btn btn-outline-primary mt-2">Commander sans s\'inscrire</a>`)
+  } else{
+     alert('votre pseudo doit comporter au moins 5 lettres.');
+  }
+    }) */
+</script>
 {% endblock %}

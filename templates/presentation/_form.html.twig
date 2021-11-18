@@ -1,0 +1,15 @@
+{{ form_start(form) }}
+{{ form_row(form.pseudo,
+  {'attr': {
+        'class': 'mb-4 margintop',
+       ' row_attr':'form-floating',
+       'placeholder': 'pseudo',
+        }}
+) }}
+    {{ form_row(form.submit,
+    {'attr': {
+        'class': 'btn-default',
+        }}
+    )
+     }}
+{{ form_end(form) }}

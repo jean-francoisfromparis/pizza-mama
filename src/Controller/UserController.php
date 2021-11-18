@@ -36,16 +36,14 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $entityManager = $this->getDoctrine()->getManager();
             $user->setCreatedAt(new \DateTimeImmutable());
             $user->setRoles(['ROLE_USER']);
             $entityManager->persist($user);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_login', []);
+            return $this->redirectToRoute('app_presentation_presentation', []);
         }
-
         return $this->renderForm('user/new.html.twig', [
             'user' => $user,
             'form' => $form,
