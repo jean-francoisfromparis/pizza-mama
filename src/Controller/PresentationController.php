@@ -82,12 +82,24 @@ class PresentationController extends AbstractController
         $form = $this->createForm(OrderType::class);
         $form->handleRequest($request);
         $pseudo = '';
+        $email = '';
+        $description = 'vous avez commandez ';
+        foreach ($cartService->getFullCart() as $item ) {
+           $description .= "$item[quantity] $item[product] ~ ";
+        }
         if ($form->isSubmitted() && $form->isValid()) {
             $forms[] = $request->request->get('order');
             $pseudo = $forms[0]['pseudo'];
+            $email = $forms[0]['email'];
 
-            return $this->redirectToRoute('app_payment_checkout', []);
+            return $this->redirectToRoute('app_payment_checkout', [
+                'pseudo' => $pseudo,
+                'email' => $email,
+                'description' => $description,
+            ]);
         }
+        // dd($cartService->getFullCart());
+        // dd($description);
         return [
             'form' => $form->createView(),
             'items' => $cartService->getFullCart(),

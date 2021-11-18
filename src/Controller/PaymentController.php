@@ -19,7 +19,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class PaymentController extends AbstractController
 {
     /**
-     * @Route("/checkout")
+     * @Route("/checkout/{pseudo}-{email}-{description}")
      * @Template
      */
     public function checkout(
@@ -33,6 +33,19 @@ class PaymentController extends AbstractController
         $amount = $cartService->getTotal();
         $items = $cartService->getFullCart();
 
+        $item = $items[0];
+        if ($request->attributes->get('pseudo')) {
+            $pseudo = $request->attributes->get('pseudo');
+        }
+        if ($request->attributes->get('email')) {
+            $email = $request->attributes->get('email');
+        } else { $email = 'test@email.com';}
+
+        if ($request->attributes->get('description')) {
+            $description = $request->attributes->get('description');
+        } else { $description = 'Nous vous recercions pour votre commande chez Pizza-Mama';}
+
+
         $session = Session::create([
             'line_items' => [
 
@@ -43,9 +56,13 @@ class PaymentController extends AbstractController
                     'quantity' => 1,
                     'currency' => 'EUR',
                     'amount' => $amount,
-                    'name' => 'Pizza carbo',
+                    'name' => $pseudo,
+                    'description' => $description,
                 ],
             ],
+            // "customer" => $pseudo,
+            "metadata" => ['name' => $pseudo ],
+            'customer_email' => $email,
             'payment_method_types' => ['card'],
             'mode' => 'payment',
             'success_url' => 'https://127.0.0.1:8000/success_url',

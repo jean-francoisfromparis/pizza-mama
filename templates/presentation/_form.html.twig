@@ -1,9 +1,16 @@
 {{ form_start(form) }}
 {{ form_row(form.pseudo,
   {'attr': {
-        'class': 'mb-4 margintop',
+        'class': 'my-5 margintop',
        ' row_attr':'form-floating',
        'placeholder': 'pseudo',
+        }}
+) }}
+{{ form_row(form.email,
+  {'attr': {
+        'class': 'mb-4',
+       ' row_attr':'form-floating',
+       'placeholder': 'email',
         }}
 ) }}
     {{ form_row(form.submit,
