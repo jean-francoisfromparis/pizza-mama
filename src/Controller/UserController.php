@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 /**
  * @Route("/user")
@@ -29,20 +30,34 @@ class UserController extends AbstractController
     /**
      * @Route("/new", name="user_new", methods={"GET","POST"})
      */
-    public function new(Request $request, CartService $cartService): Response
+    public function new(Request $request, CartService $cartService, UserPasswordHasherInterface $passwordHasher): Response
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
+        $description = 'vous avez commandez ';
+        foreach ($cartService->getFullCart() as $item) {
+            $description .= "$item[quantity] $item[product] ~ ";
+        }
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $user->setCreatedAt(new \DateTimeImmutable());
             $user->setRoles(['ROLE_USER']);
+            $hashedPassword = $passwordHasher->hashPassword(
+                $user,
+                $user->getPassword()
+              );
+              // dd($hashedPassword);
+              $user->setPassword($hashedPassword);
             $entityManager->persist($user);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_presentation_presentation', []);
+            return $this->redirectToRoute('app_payment_checkout', [
+                'pseudo' => $user->getPseudo(),
+                'email' => $user->getEmail(),
+                'description' => $description,
+            ]);
         }
         return $this->renderForm('user/new.html.twig', [
             'user' => $user,

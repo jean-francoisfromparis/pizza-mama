@@ -84,13 +84,17 @@ class PresentationController extends AbstractController
         $pseudo = '';
         $email = '';
         $description = 'vous avez commandez ';
-        foreach ($cartService->getFullCart() as $item ) {
-           $description .= "$item[quantity] $item[product] ~ ";
+        foreach ($cartService->getFullCart() as $item) {
+            $description .= "$item[quantity] $item[product] ~ ";
         }
         if ($form->isSubmitted() && $form->isValid()) {
             $forms[] = $request->request->get('order');
             $pseudo = $forms[0]['pseudo'];
-            $email = $forms[0]['email'];
+            if ($forms[0]['email']) {
+                $email = $forms[0]['email'];
+            } else {
+                $email = 'noreply@email.fr';
+            }
 
             return $this->redirectToRoute('app_payment_checkout', [
                 'pseudo' => $pseudo,

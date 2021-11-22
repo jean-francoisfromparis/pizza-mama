@@ -67,18 +67,6 @@ class CartService
         return $total;
     }
 
-    // Public function getName(): array
-    // {
-    //     $cart = $this->session ->get('cart', []);
-    //     $names = [];
-    //     foreach ($cart as $id) {
-    //         $names[] = [
-    //         'name' => $this->product->getName($id),
-    //         ];
-    //     }
-    //     return $names;
-    // }
-
     public function deleteAll(SessionInterface $session): void
     {
         $session ->remove('cart');
