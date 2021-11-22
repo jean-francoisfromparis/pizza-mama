@@ -20,7 +20,7 @@ class UserType extends AbstractType
                 'email',
                 EmailType::class,
                 [
-                'required' => false,
+                // 'required' => false,
                 'label' => false,
                 ]
             )
@@ -28,7 +28,7 @@ class UserType extends AbstractType
                 'pseudo',
                 TextType::class,
                 [
-                'required' => false,
+                // 'required' => false,
                 'label' => false,
                 ]
             )

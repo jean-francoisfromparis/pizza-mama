@@ -6,7 +6,7 @@
 
 {% block stylesheets %}
   {{ parent() }}
-  {{ encore_entry_link_tags('order') }}
+   {{ encore_entry_link_tags('order') }}
 {% endblock %}
 
 {% block body %}
@@ -16,7 +16,7 @@
     <div class="col-md-6">
       <div class="row">
         <span class="d-block text-justify">{% trans %}Pour passer commande l'inscription n'est pas obligatoire. L'inscription nous permettra de vous faire profiter des promotions et des remises fidélités lors de leurs mises en places. Pour recevoir votre commande un pseudo est cependant nécessaire.{% endtrans %}</span>
-        {# <div class="row"><span class="badge rounded-pill bg-title mt-5 w-25"  onclick="history.back()"> {% trans %}retour{% endtrans %}</span></div> #}
+        <div class="row"><span class="badge rounded-pill bg-title mt-5 w-25"  onclick="history.back()"> {% trans %}retour{% endtrans %}</span></div>
 
         <div class="col-md-6">
           <div
@@ -24,29 +24,26 @@
             {# cart #}
             {% set vars = {'items': 'total'} %}
             <h2 class="bg-title my-0">
-              <a href=" {{path('app_presentation_presentation')}} ">Panier</a>
+              <a href=" {{path('app_presentation_order')}} ">Panier</a>
             </h2>
             <div class="card-body">
               {% if items | length > 0 %}
                 <table class="table table-striped table-hover">
-                  <thead class="text-center">
+                  <thead>
                     <tr>
-                      <th>{% trans %}Produit{% endtrans %}</th>
-                      <th>{% trans %}Prix{% endtrans %}</th>
-                      <th>{% trans %}Qté{% endtrans %}</th>
-                      <th>{% trans %}TVA{% endtrans %}</th>
-                      <th>{% trans %}Total{% endtrans %}</th>
+                      <th>Produit</th>
+                      <th>Prix</th>
+                      <th>Qté</th>
+                      <th>Total</th>
                       <th></th>
                     </tr>
                   </thead>
-                  <tbody class="text-center">
+                  <tbody>
                     {% for item in items %}
                       <tr>
                         <td class="fs-6">{{ item.product.name }}</td>
                         <td>{{ ( item.product.price / 100) | format_currency('EUR', locale='FR_fr') }}</td>
                         <td>{{ item.quantity }}</td>
-                        <td>{{ ( (( item.quantity * item.product.price) / 100) - ( (( item.quantity * item.product.price) / 100) / (1 + 0.1 ) ) |round(2, 'floor') ) }}
-                        </td>
                         <td>{{ (( item.quantity * item.product.price) / 100) | format_currency('EUR', locale='FR_fr') }}</td>
                         <td>
                           <a href=" {{ path('cart_remove', { 'id':item.product.id }) }} " class="btn btn-danger btn-sm  float-right" onclick="return confirm('⚠️ comfirmez vous la suppression de la ligne')">🗑️</a>
@@ -74,17 +71,16 @@
         </div>
         <div class="col-md-6 align-self-center">
 
-          <div class="card border boder-2 mx-auto position-relative position2 position3" style="max-width: 450px; min-height:405px">
+          <div class="card border boder-2 mx-auto position-relative position2 position3" style="max-width: 450px; max-height:405px">
             <div class="rounded-circle circle mt-md-5 position-absolute top-0 start-50 translate-middle pizza-circle"></div>
             <div class="row g-0">
               <div class="col-md-6">
-                <img src="{{ asset('build/images/pizza.jpg') }}" class="img-fluid rounded-start d-none d-sm-block" alt="miam une pizza" style="max-width:225px; min-height:405px">
+                <img src="{{ asset('build/images/pizza.jpg') }}" class="img-fluid rounded-start d-none d-sm-block" alt="miam une pizza" style="max-width:250px; max-height:">
               </div>
               <div class="col-md-6 align-self-center">
-                <div class="card-body justify-content-center my-5 align-items-center">
-                  <span class=""><strong>{{ pseudo }}</strong> {% trans %}votre paiement a été validé{% endtrans %}</span>
-                  <span class="text-justify">vous pouvez télécharger la facture ou la transférer par mail avec les liens ci-dessous.</span>
-                  <a href="" class="btn btn-outline-success co-8">Telecharger la facture</a>
+                <div class="card-body text-center justify-content-center my-5 align-items-center">
+                  {{ include('presentation/_form.html.twig') }}
+                  <a href="{{ path('user_new') }}" class="btn btn-outline-primary">S'inscrire</a>
                 </div>
               </div>
             </div>

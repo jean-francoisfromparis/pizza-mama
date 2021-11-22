@@ -1,0 +1,58 @@
+{% extends '/payment/layout.html.twig' %}
+
+{% block title %}
+  {{ parent() }}
+  | Merci pour votre commande !
+{% endblock %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css"/>
+  {{ parent() }}
+{% endblock %}
+
+{% block body %}
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <div class="col-md-12">
+        <section class="">
+          <h1 class="h3 mb-5 font-weight-normal text-center position1">{% trans %}Votre commande a échoué{% endtrans %}</h1>
+          {% if app.user is not null %}
+            <span class="fs-6 text-center d-block fw-bolder text-pizza"> {{app.user.pseudo| upper}} </span>
+          {% endif %}
+
+          <div class="card my-5 border boder-2 mx-auto position2 position-relative" style="max-width: 540px;">
+            <div class="rounded-circle circle position2 position-absolute top-0 start-50 translate-middle">
+              <img src="{{ asset('build/images/circle-pizza.jpg') }}" class="img-fluid rounded-circle d-none d-xs-block mx-auto" alt="miam une pizza" style="max-width: 160px; max-height:160px"></div>
+            <div class="row g-0">
+              <div class="col-md-6">
+                <img src="{{ asset('build/images/pizza.jpg') }}" class="img-fluid rounded-start d-none d-sm-block" alt="miam une pizza" style="max-width:270px;">
+              </div>
+              <div class="col-md-6">
+                <div class="card-body justify-content-center my-5">
+                  <span class="fs-6 text-justify d-block col mt-xs-5 mt-2">{% trans %}vous pouvez retourner à la validation pour entrer un pseudo et payer{% endtrans %}</span>
+                  <span class="fs-6 d-block text-justify my-2 ">
+                    {% trans %}Présentez toutes demandes complémentaires concernant votre commande aux présentoires.{% endtrans %}
+                    <a href="mailto:orders@example.com" class="my-2 fw-bolder">orders@example.com</a>.
+                    {#TODOs créer une email valide pour le contact de service client#}
+                  </span>
+                  {% flush %}
+                  <a href=" {{ path('app_presentation_order')}} " class="btn btn-default mt-3" >Retour à la commande</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </section>
+      </div>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+  {% include '/includes/footer.html.twig' %}
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  {# {{ encore_entry_script_tags('payment') }} #}
+{% endblock %}

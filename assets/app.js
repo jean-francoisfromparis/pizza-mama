@@ -1,7 +1,6 @@
 import './styles/app.scss';
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "@fortawesome/fontawesome-free/js/all.js";
-import './scripts/intro.js';
 /*
  * Welcome to your app's main JavaScript file!
  *

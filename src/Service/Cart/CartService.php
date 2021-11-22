@@ -2,6 +2,7 @@
 
 namespace App\Service\Cart;
 
+use App\Entity\Product;
 use App\Repository\ProductRepository;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
@@ -12,11 +13,13 @@ class CartService
 {
     protected $session;
     protected $productRepository;
+    protected $product;
 
     public function __construct(SessionInterface $session, ProductRepository $productRepository)
     {
         $this ->session = $session;
         $this ->productRepository = $productRepository;
+        // $this ->product = $product;
     }
 
 
@@ -62,5 +65,10 @@ class CartService
             $total += $item['product'] ->getPrice() * $item['quantity'];
         }
         return $total;
+    }
+
+    public function deleteAll(SessionInterface $session): void
+    {
+        $session ->remove('cart');
     }
 }
