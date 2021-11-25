@@ -124,7 +124,7 @@ class PaymentController extends AbstractController
             $length = count($items);
             $em = $this->getDoctrine()->getManager();
             for ($i = 0; $i < $length; $i++) {
-                $orderLine =(new OrderLine())
+                $orderLine = (new OrderLine())
                 ->setOrderLine($order)
                 ->setProductName($items[$i ]['product']->getName())
                 ->setPrice($items[$i ]['product']->getPrice())
@@ -169,7 +169,7 @@ class PaymentController extends AbstractController
         CartService $cartService,
         Request $request,
         MailerInterface $mailer
-        ) {
+    ) {
 
         $items = $cartService->getFullCart();
         $size = 'A8';
@@ -193,9 +193,9 @@ class PaymentController extends AbstractController
         ]);
         // dd( gettype($price));
         $order->setTo([$request->attributes->get('pseudo'), '', '']);
-        $order->addItem($items[0]['product']->getName(), false, $items[0]['quantity'],10, ($items[0]['product']->getPrice())*0.01, $discount, $price);
+        $order->addItem($items[0]['product']->getName(), false, $items[0]['quantity'], 10, ($items[0]['product']->getPrice()) * 0.01, $discount, $price);
         $order->addTotal('Total', $amount);
-        $order->addTotal('TVA 10%', $amount * 0.01/(1+0.1));
+        $order->addTotal('TVA 10%', $amount * 0.01 / (1 + 0.1));
         $order->addTotal('Total payé', $amount, true);
         $order->addParagraph(
             "En cas d'itérrogation sur cette facture veuillez la présenter en caisse ! "
