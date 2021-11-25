@@ -20,7 +20,7 @@ class OrderLineRepository extends ServiceEntityRepository
         parent::__construct($registry, OrderLine::class);
     }
 
-    public function findAllById( $OrderLineId)
+    public function findAllById($OrderLineId)
     {
         $entityManager = $this->getEntityManager();
 

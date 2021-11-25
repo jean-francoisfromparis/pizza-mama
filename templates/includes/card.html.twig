@@ -11,62 +11,84 @@
         <img src="{{ asset('images/imageDefault.jpg') }}" class="img-fluid rounded-start text-center" alt="image par défaut" style="width:96px; height:96px">
       {% endif %}
     </div>
-    <div class="col-md-8 align-self-center">
-      <div class="card-body">
-        <h5 class="card-title item-card-title fs-5">{{ findOneById(id).name }}</h5>
-        <div class="card-text text-end mt-3">
-          <small class="text-muted fs-4 me-3">{{( findOneById(id).price / 100) | format_currency('EUR', locale='FR_fr')}}</small>
+    <div class="col-md-8">
+      <div class="card-body mh-100">
+        <h5 class="card-title item-card-title mt-2">{{ findOneById(id).name }}</h5>
+        <div class="card-text text-end ">
+          <span class="text-muted fs-4 me-3">{{( findOneById(id).price / 100) | format_currency('EUR', locale='FR_fr')}}</span>
           <a data-fancybox="dialog" data-src="#modal{{ findOneById(id).id }}" href="javascript:;" data-options='{"touch": true, "smallBtn" : false}'>
             <button type="button" class="btn btn-outline-primary fs-6">voir
             </button>
           </a>
-        </p>
       </div>
     </div>
   </div>
-
-</div></div>{# modal d'affichage des plats #}<div class="card" id="modal{{ findOneById(id).id }}" style="display:none; max-width:560px; max-height:780px">
+</div>
+</div>{# modal d'affichage des plats #}<div class="card" id="modal{{ findOneById(id).id }}" style="display:none; max-width:560px; max-height:780px">
 <div class="row card-body overflow-scroll">
   <div class="card-header bg-logo-fade rounded-3 mb-2">
     <h5 class="">
       {{ findOneById(id).name }}</h5>
   </div>
   <img src="{{ asset('images/products/'~ findOneById(id).photo) }}" class="img-fluid img-thumbnail mx-auto d-block" alt=" {{ findOneById(id).name }}" style="width:300px">
-  <div class="col-12"><span>{{ findOneById(id).description }}</span></div>
+  <div class="col-12">
+    <span>{{ findOneById(id).description }}</span>
+  </div>
   {% set supp = 1 %}
-  <div class="col-8"><input type="checkbox" name="champignon" id="champignon" class="me-3"><span>supp Champignon</span></div><div class="col-4 text-end"><i class="far fa-minus-square me-4"></i>2<i class="far fa-plus-square ms-4"></i></div>
-  <div class="col-12"><input type="checkbox" name="" id="" class="me-3 supp"><span>supp Piments verts</span></div> {#TODOs mettre en place les suppléments dans easyadmin#}
-  <div class="col-12"><input type="checkbox" name="" id="" class="me-3 supp"><span>supp Oignons</span></div>
-  <div class="col-12"><input type="checkbox" name="" id="" class="me-3 supp"><span>supp Capres</span></div>
-  <div class="col-12"><input type="checkbox" name="" id="" class="me-3 supp"><span>supp Poivrons</span></div>
-  <div class="col-12"><input type="checkbox" name="" id="" class="me-3 supp"><span>supp Courgettes</span></div>
-  <div class="col-12"><input type="checkbox" name="" id="" class="me-3 supp"><span>supp Aubergines</span></div>
-  <div class="col-12"><input type="checkbox" name="" id="" class="me-3 supp"><span>supp Olives</span></div>
-  <div class="col-12"><input type="checkbox" name="" id="" class="me-3 supp"><span>supp Tomates cerises</span></div>
-  <div class="col-12"><input type="checkbox" name="" id="" class="me-3 supp"><span>supp Roquettes</span></div>
-  <div class="col-12"><input type="checkbox" name="" id="" class="me-3 supp"><span>supp Nduja</span></div>
-  <div class="col-12"><input type="checkbox" name="" id="" class="me-3 supp"><span>supp Gorgonzola</span></div>
-  <div class="col-12"><input type="checkbox" name="" id="" class="me-3 supp"><span>supp Jambon Blanc</span></div>
-  <div class="col-12"><input type="checkbox" name="" id="" class="me-3 supp"><span>supp Spinata Calabra</span></div>
-  <div class="col-12"><input type="checkbox" name="" id="" class="me-3 supp"><span>supp Speck</span></div>
-  <div class="col-12"><input type="checkbox" name="" id="" class="me-3 supp"><span>supp Bresaola</span></div>
-  <div class="col-12"><input type="checkbox" name="" id="" class="me-3 supp"><span>supp Salame</span></div>
-  <div class="col-12"><input type="checkbox" name="" id="" class="me-3 supp"><span>supp Pepperoni</span></div>
+  <div class="col-8"><input type="checkbox" name="champignon" id="champignon" class="me-3"><span>supp Champignon</span>
+  </div>
+  <div class="col-4 text-end">
+    <i class="far fa-minus-square me-4"></i>2<i class="far fa-plus-square ms-4"></i>
+  </div>
+  <div class="col-12"><input type="checkbox" name="" id="" class="me-3 supp"><span>supp Piments verts</span>
+  </div>
+  {#TODOs mettre en place les suppléments dans easyadmin#}
+  <div class="col-12"><input type="checkbox" name="" id="" class="me-3 supp"><span>supp Oignons</span>
+  </div>
+  <div class="col-12"><input type="checkbox" name="" id="" class="me-3 supp"><span>supp Capres</span>
+  </div>
+  <div class="col-12"><input type="checkbox" name="" id="" class="me-3 supp"><span>supp Poivrons</span>
+  </div>
+  <div class="col-12"><input type="checkbox" name="" id="" class="me-3 supp"><span>supp Courgettes</span>
+  </div>
+  <div class="col-12"><input type="checkbox" name="" id="" class="me-3 supp"><span>supp Aubergines</span>
+  </div>
+  <div class="col-12"><input type="checkbox" name="" id="" class="me-3 supp"><span>supp Olives</span>
+  </div>
+  <div class="col-12"><input type="checkbox" name="" id="" class="me-3 supp"><span>supp Tomates cerises</span>
+  </div>
+  <div class="col-12"><input type="checkbox" name="" id="" class="me-3 supp"><span>supp Roquettes</span>
+  </div>
+  <div class="col-12"><input type="checkbox" name="" id="" class="me-3 supp"><span>supp Nduja</span>
+  </div>
+  <div class="col-12"><input type="checkbox" name="" id="" class="me-3 supp"><span>supp Gorgonzola</span>
+  </div>
+  <div class="col-12"><input type="checkbox" name="" id="" class="me-3 supp"><span>supp Jambon Blanc</span>
+  </div>
+  <div class="col-12"><input type="checkbox" name="" id="" class="me-3 supp"><span>supp Spinata Calabra</span>
+  </div>
+  <div class="col-12"><input type="checkbox" name="" id="" class="me-3 supp"><span>supp Speck</span>
+  </div>
+  <div class="col-12"><input type="checkbox" name="" id="" class="me-3 supp"><span>supp Bresaola</span>
+  </div>
+  <div class="col-12"><input type="checkbox" name="" id="" class="me-3 supp"><span>supp Salame</span>
+  </div>
+  <div class="col-12"><input type="checkbox" name="" id="" class="me-3 supp"><span>supp Pepperoni</span>
+  </div>
 
 
 </div>
-  <div class="row card-footer border-top-0">
-    <a href=" {{path('cart_add', {'id':findOneById(id).id}) }} " class="btn btn-danger btn-sm text-end col-1">
-      <i class="fab fa-opencart"></i>
-    </a>
-  </div>
-</div>{# <button data-fancybox data-src="#dialog-content">
-          HTML element
-        </button>
+<div class="row card-footer border-top-0">
+  <a href=" {{path('cart_add', {'id':findOneById(id).id}) }} " class="btn btn-danger btn-sm text-end col-1">
+    <i class="fab fa-opencart"></i>
+  </a>
+</div></div>{# <button data-fancybox data-src="#dialog-content">
+            HTML element
+          </button>
 
-        <div id="modal{{ findOneById(id).id }}" style="display:none;" class="animated-modal">
-          <h2>Hello, world!</h2>
-          <p>
-            <input type="text" value="See if changes remain after closing the dialog" />
-          </p>
-        </div> #}
+          <div id="modal{{ findOneById(id).id }}" style="display:none;" class="animated-modal">
+            <h2>Hello, world!</h2>
+            <p>
+              <input type="text" value="See if changes remain after closing the dialog" />
+            </p>
+          </div> #}

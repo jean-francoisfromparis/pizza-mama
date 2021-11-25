@@ -9,6 +9,7 @@ use App\Repository\ProductRepository;
 use App\Repository\CategoryRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+
 use function PHPUnit\Framework\classHasAttribute;
 use function PHPUnit\Framework\objectHasAttribute;
 

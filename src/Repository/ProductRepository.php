@@ -49,4 +49,20 @@ class ProductRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult();
     }
+
+    /**
+     * Search for the product in the main presnetation panel
+     *
+     * @return void
+     */
+    public function search($search =null)
+    {
+        $query = $this->createQueryBuilder('p');
+        $query->where('p.status = 1');
+        if($search != null){
+            $query->andWhere('MATCH_AGAINST (p.name ) AGAINST (:scearch boolean) > 0')
+            ->setParameter('search', $search);
+        }
+        return $query ->getQuery()->getResult();
+    }
 }

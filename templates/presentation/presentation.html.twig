@@ -231,8 +231,36 @@
     {% include '/includes/menu.html.twig' %}
     {% include '/includes/footer.html.twig' %}
     <script type="module">
-      Fancybox.bind("[data-fancybox]", { // Your options go here
-      });
+
+
+
+{# console.log('test'); #}
+$('#searchbox').on('keyup',function(e) {
+//console.log('test')
+  var search = $(this).val()
+  if(search != ''){
+    $.ajax({
+      type: 'GET',
+      url: 'src/Service/search.php',
+      data: 'user=' +encodeURIComponent(search),
+      success: function(data){
+        if(data != '') {
+          $('#searchResult').append(data);
+        } else {
+document.getElementById('result-search').innerHTML = '<div style="font-size: 20px; text-align: center; margin-top: 10px">Aucun résultat</div>'
+        }
+
+      }
+
+    })
+
+  }
+
+});
+
+      {# Fancybox.bind("[data-fancybox]", { // Your options go here
+      }); #}
+
     </script>
   {% endblock %}
 
