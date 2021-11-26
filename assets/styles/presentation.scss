@@ -2,6 +2,8 @@ $bg-standard: #e5e5e5;
 $bg-central-zone: #fffafa;
 $bg-central-card: darkgray;
 $bg-logo: rgba(220, 20, 60, 0.164);
+$search-time: 800ms;
+$reset-time: 150ms;
 
 body {
   position: relative;
@@ -35,7 +37,7 @@ body {
   position: sticky;
   top: 0;
   height: 7rem;
-  z-index: 100;
+  z-index: 300;
 }
 
 .stage-logo {
@@ -188,8 +190,8 @@ body {
 }
 
 .show {
-  // position:absolute;
-  // top:15rem;
+  position:absolute;
+  top:0rem;
   width: 100vw;
   height: 20vh;
   z-index: 10;
@@ -199,9 +201,10 @@ body {
 .title-bar {
   position: fixed;
   top: 100px;
+  margin-bottom: 10px;
   width: 100vw;
   height: 8rem;
-  z-index: 90;
+  z-index: 10;
   background-color: $bg-standard !important;
   border-bottom: 2px solid crimson;
 }
@@ -248,12 +251,15 @@ body {
   content: '';
   pointer-events: none;
 }
+
 .card::before {
   transform-origin: left top;
 }
+
 .card::after {
   transform-origin: right bottom;
 }
+
 .card:hover::before,
 .card:hover::after,
 .card:focus::before,
@@ -288,6 +294,7 @@ body {
   position: sticky;
   top: 240px;
   margin-left: 1250px;
+  z-index: 10;
 }
 
 .modal-text {
@@ -300,47 +307,48 @@ body {
   left: 80%;
   transform:  translate(-50%,50%);
   background: rgba(220, 20, 60, 0.616);
-  // height: 40px;
+  height: 50px;
   border-radius: 40px;
   padding: 10px;
-
-}
-
-.searchBox:hover > .searchInput {
-  width: 240px;
-  padding: 0 6px;
-}
-
-.searchBox:hover > .searchButton {
-background: white;
-color : crimson;
 }
 
 .searchButton {
   color: white;
-  float: right;
-  width: 40px;
+   width: 40px;
   height: 40px;
   border-radius: 50%;
   background: crimson;
-  display: flex;
+  // display: flex;
   justify-content: center;
   align-items: center;
-  transition: 0.4s;
+  // transition: 0.4s;
 }
 
 .searchInput {
-  border:none;
-  background: none;
+  border:crimson;
+  background: white;
   outline:none;
   float:left;
   padding: 0;
-  color: white;
+  color: crimson;
   font-size: 16px;
   transition: 0.4s;
-  line-height: 40px;
-  width: 0px;
+  line-height: 30px;
+  width: 250px;
+}
 
+.resultBox{
+  position: -webkit-sticky;
+  position: sticky;
+  left:750px;
+}
+
+.bg-lightgray-search {
+  position: relative;
+  top:11vh;
+  padding-top:10px;
+  background-color: $bg-standard;
+  z-index: -1000;
 }
 
 @media screen and (max-width: 620px) {

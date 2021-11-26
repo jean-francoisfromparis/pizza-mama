@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Product;
+use App\Data\SearchData;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
@@ -55,14 +56,22 @@ class ProductRepository extends ServiceEntityRepository
      *
      * @return void
      */
-    public function search($search =null)
+    public function search(SearchData $search): array
     {
-        $query = $this->createQueryBuilder('p');
-        $query->where('p.status = 1');
-        if($search != null){
-            $query->andWhere('MATCH_AGAINST (p.name ) AGAINST (:scearch boolean) > 0')
-            ->setParameter('search', $search);
+        $query = $this
+        ->createQueryBuilder('p')
+        // ->where('p.status = 1')
+        ;
+
+        if(!empty($search->q)){
+            $query = $query
+            // ->where('p.status = 1')
+            ->Where('p.name like :q')
+            // ->andwhere('p.status = 1')
+            ->setParameter('q', "%{$search->q}%");
+            return $query ->getQuery()->getResult();
+        } else {
+            return [];
         }
-        return $query ->getQuery()->getResult();
     }
 }

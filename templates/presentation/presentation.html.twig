@@ -14,8 +14,20 @@
   {% include '/includes/navbar.html.twig' %}
 
   <div class="row show m-0"></div>
+
   <div class="row text-center m-0 product-card">
     <div class="title-bar text-start">
+      {# <div clas="row resultBox"> #}
+
+        <div class="col-md-5 offset-md-3 bg-lightgray-search">
+          {% for result in results %}
+            {% include "includes/search_card.html.twig" %}
+          {% endfor %}
+        </div>
+        <div class="col-md-4 d-block"></div>
+      {# </div> #}
+
+
       <div
         id="list-example" class="list-group col-md-1 mt-5 rounded-pill">
         {# TODOs: mettre le list groupe sur un select avec défilement de la valeur active#}
@@ -29,11 +41,15 @@
   </div>
   <div class="spied" data-bs-spy="scroll" data-bs-target="#list-example" data-bs-offset="20" class="scrollspy-example" tabindex="0">
     <div class="row text-center m-0 product-card mb-5" id="list-item-1">
+
+
       <div
         class="card cart rounded-3 col-md-3">
         {# cart #}
         {% set vars = {'items': 'total'} %}
-        <h2 class="bg-title my-0"> <a href=" {{path('app_presentation_order')}} ">Panier</a> </h2>
+        <h2 class="bg-title my-0">
+          <a href=" {{path('app_presentation_order')}} ">Panier</a>
+        </h2>
         <div class="card-body">
           {% if items | length > 0 %}
             <table class="table table-striped table-hover">
@@ -57,8 +73,8 @@
                       <a href=" {{ path('cart_remove', { 'id':item.product.id }) }} " class="btn btn-danger btn-sm  float-right" onclick="return confirm('⚠️ comfirmez vous la suppression de la ligne')">🗑️</a>
                     </td>
                     {# <td>
-                                                                                                                                                                                                                                                                                                                                                                              <a href=" {{path('add_cart', {'id':cart.plat.id}) }} " class="btn btn-danger btn-sm float-right"><i class="fab fa-opencart"></i></a>
-                                                                                                                                                                                                                                                                                                                                                                            </td> #}
+                    <a href=" {{path('add_cart', {'id':cart.plat.id}) }} " class="btn btn-danger btn-sm float-right"><i class="fab fa-opencart"></i></a>
+                    </td> #}
                   </tr>
 
                 {% endfor %}
@@ -233,34 +249,37 @@
     <script type="module">
 
 
+      {
+        # console.log('test');
+        #
+      }
+      $('#searchbox').on('keyup', function (e) { // console.log('test')
+        var search = $(this).val()
+        if (search != '') {
+          $.ajax({
+            type: 'GET',
+            url: 'src/Service/search.php',
+            data: 'user=' + encodeURIComponent(search),
+            success: function (data) {
+              if (data != '') {
+                $('#searchResult').append(data);
+              } else {
+                document.getElementById('result-search').innerHTML = '<div style="font-size: 20px; text-align: center; margin-top: 10px">Aucun résultat</div>'
+              }
 
-{# console.log('test'); #}
-$('#searchbox').on('keyup',function(e) {
-//console.log('test')
-  var search = $(this).val()
-  if(search != ''){
-    $.ajax({
-      type: 'GET',
-      url: 'src/Service/search.php',
-      data: 'user=' +encodeURIComponent(search),
-      success: function(data){
-        if(data != '') {
-          $('#searchResult').append(data);
-        } else {
-document.getElementById('result-search').innerHTML = '<div style="font-size: 20px; text-align: center; margin-top: 10px">Aucun résultat</div>'
+            }
+
+          })
+
         }
 
+      });
+
+      {
+        # Fancybox.bind("[data-fancybox]", { // Your options go here
+        });
+        #
       }
-
-    })
-
-  }
-
-});
-
-      {# Fancybox.bind("[data-fancybox]", { // Your options go here
-      }); #}
-
     </script>
   {% endblock %}
 

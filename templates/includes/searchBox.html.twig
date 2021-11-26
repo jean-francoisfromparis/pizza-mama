@@ -1,0 +1,7 @@
+{{ form_start(form, {attr:{ 'class':'searchBox'}}) }}
+  {{ form_row(form.q, {attr:{ 'class':'searchInput rounded-pill'}}) }}
+{# <input class="searchInput" type="text" name="search_form[q]" placeholder="Rechercher" id="search_form_q"> #}
+  <button class="searchButton top-0 position-absolute start-100 mt-1" type="submit" name="search_form[reset]">
+    <i class="fas fa-search"></i>
+  </button>
+{{ form_end(form) }}
