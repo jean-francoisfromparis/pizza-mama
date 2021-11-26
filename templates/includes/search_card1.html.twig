@@ -1,22 +1,22 @@
-<div class="card item-card p-3 m-2 product-card rounded-3 justify-content-around" style="max-width: 354px; max-height:132px" id="{{ findOneById(id).id }}">
+<div class="card item-card p-3 m-2 product-card rounded-3 justify-content-around" style="max-width: 354px; max-height:132px" id="{{ results[i].id }}">
 
-  <input type="hidden" name="{{ findOneById(id).id }}"/>
+  <input type="hidden" name="{{ results[i].id }}"/>
 
   <div class="row g-0 align-items-center item">
 
     <div class="col-md-4 ">
-      {% if  findOneById(id).photo %}
-        <img src="{{ asset('images/products/' ~ findOneById(id).photo) }}" class="img-fluid img-thumbnail rounded-start" alt="{{findOneById(id).name}}" style="width:96px; height:96px">
+      {% if  results[i].photo %}
+        <img src="{{ asset('images/products/' ~ results[i].photo) }}" class="img-fluid img-thumbnail rounded-start" alt="{{results[i].name}}" style="width:96px; height:96px">
       {% else %}
         <img src="{{ asset('images/imageDefault.jpg') }}" class="img-fluid rounded-start text-center" alt="image par défaut" style="width:96px; height:96px">
       {% endif %}
     </div>
     <div class="col-md-8">
       <div class="card-body mh-100">
-        <h5 class="card-title item-card-title mt-2">{{ findOneById(id).name }}</h5>
+        <h5 class="card-title item-card-title mt-2">{{ results[i].name }}</h5>
         <div class="card-text text-end ">
-          <span class="text-muted fs-4 me-3">{{( findOneById(id).price / 100) | format_currency('EUR', locale='FR_fr')}}</span>
-          <a data-fancybox="dialog" data-src="#modal{{ findOneById(id).id }}" href="javascript:;" data-options='{"touch": true, "smallBtn" : false}'>
+          <span class="text-muted fs-4 me-3">{{( results[i].price / 100) | format_currency('EUR', locale='FR_fr')}}</span>
+          <a data-fancybox="dialog" data-src="#modal{{ results[i].id }}" href="javascript:;" data-options='{"touch": true, "smallBtn" : false}'>
             <button type="button" class="btn btn-outline-primary fs-6">voir
             </button>
           </a>
@@ -24,15 +24,15 @@
     </div>
   </div>
 </div>
-</div>{# modal d'affichage des plats #}<div class="card" id="modal{{ findOneById(id).id }}" style="display:none; max-width:560px; max-height:780px">
+</div>{# modal d'affichage des plats #}<div class="card" id="modal{{ results[i].id }}" style="display:none; max-width:560px; max-height:780px">
 <div class="row card-body overflow-scroll">
   <div class="card-header bg-logo-fade rounded-3 mb-2">
     <h5 class="">
-      {{ findOneById(id).name }}</h5>
+      {{ results[i].name }}</h5>
   </div>
-  <img src="{{ asset('images/products/'~ findOneById(id).photo) }}" class="img-fluid img-thumbnail mx-auto d-block" alt=" {{ findOneById(id).name }}" style="width:300px">
+  <img src="{{ asset('images/products/'~ results[i].photo) }}" class="img-fluid img-thumbnail mx-auto d-block" alt=" {{ results[i].name }}" style="width:300px">
   <div class="col-12">
-    <span>{{ findOneById(id).description }}</span>
+    <span>{{ results[i].description }}</span>
   </div>
   {% set supp = 1 %}
   <div class="col-8"><input type="checkbox" name="champignon" id="champignon" class="me-3"><span>supp Champignon</span>
@@ -79,14 +79,14 @@
 
 </div>
 <div class="row card-footer border-top-0">
-  <a href=" {{path('cart_add', {'id':findOneById(id).id}) }} " class="btn btn-danger btn-sm text-end col-1">
+  <a href=" {{path('cart_add', {'id':results[i].id}) }} " class="btn btn-danger btn-sm text-end col-1">
     <i class="fab fa-opencart"></i>
   </a>
 </div></div>{# <button data-fancybox data-src="#dialog-content">
             HTML element
           </button>
 
-          <div id="modal{{ findOneById(id).id }}" style="display:none;" class="animated-modal">
+          <div id="modal{{ results[i].id }}" style="display:none;" class="animated-modal">
             <h2>Hello, world!</h2>
             <p>
               <input type="text" value="See if changes remain after closing the dialog" />

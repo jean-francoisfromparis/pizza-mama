@@ -18,6 +18,7 @@ use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
  * @ORM\Entity(repositoryClass=ProductRepository::class)
  * @Vich\Uploadable
  * @Gedmo\SoftDeleteable(hardDelete=false)
+ * @ORM\Table(name="Product", indexes={@ORM\Index(columns={"name", "description"}, flags={"fulltext"})})
  */
 class Product
 {

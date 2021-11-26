@@ -1,9 +1,11 @@
 import './styles/presentation.scss';
+import $ from 'jquery';
+global.$ = $;
+
 import "@fancyapps/ui/dist/fancybox.css";
 import { Fancybox, Carousel, Panzoom } from "@fancyapps/ui";
 // import { createPopper } from '@popperjs/core';
-import $ from 'jquery';
-global.$ = $;
+
 // import 'bootstrap';
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "@fortawesome/fontawesome-free/js/all.js";
@@ -13,7 +15,7 @@ import "@fortawesome/fontawesome-free/js/all.js";
 // any CSS you import will output into a single css file (app.css in this case)
 
 // start the Stimulus application
-console.log('test');
+
 var scrollSpy = new bootstrap.ScrollSpy(document.body, {
   target: '#list-example'
 })
@@ -21,3 +23,6 @@ var scrollSpy = new bootstrap.ScrollSpy(document.body, {
 Fancybox.bind("[data-fancybox]", {
   // Your options go here
 });
+
+
+// console.log('test');

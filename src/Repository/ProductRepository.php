@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Product;
+use App\Data\SearchData;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
@@ -48,5 +49,29 @@ class ProductRepository extends ServiceEntityRepository
             ->setParameter('val', $value)
             ->getQuery()
             ->getOneOrNullResult();
+    }
+
+    /**
+     * Search for the product in the main presnetation panel
+     *
+     * @return void
+     */
+    public function search(SearchData $search): array
+    {
+        $query = $this
+        ->createQueryBuilder('p')
+        // ->where('p.status = 1')
+        ;
+
+        if(!empty($search->q)){
+            $query = $query
+            // ->where('p.status = 1')
+            ->Where('p.name like :q')
+            // ->andwhere('p.status = 1')
+            ->setParameter('q', "%{$search->q}%");
+            return $query ->getQuery()->getResult();
+        } else {
+            return [];
+        }
     }
 }
