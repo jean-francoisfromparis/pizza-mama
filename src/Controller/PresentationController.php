@@ -5,13 +5,15 @@ namespace App\Controller;
 use App\Entity\Product;
 use App\Form\OrderType;
 use App\Data\SearchData;
+use App\Entity\Comments;
 use App\Form\SearchForm;
+use App\Form\CommentsType;
+
 use App\Service\Cart\CartService;
 use App\Repository\ProductRepository;
 
 use App\Repository\CategoryRepository;
 use Symfony\Component\HttpFoundation\Request;
-
 use Symfony\Component\Routing\Annotation\Route;
 use function PHPUnit\Framework\classHasAttribute;
 use function PHPUnit\Framework\objectHasAttribute;
@@ -126,6 +128,25 @@ class PresentationController extends AbstractController
             'items' => $cartService->getFullCart(),
             'total' => $cartService->getTotal(),
         ];
+    }
+
+    /**
+     * Comments page render
+     * @Route("/presentation/commentaires")
+     * @Template
+     * @param  mixed $request
+     * @return void
+     */
+    public function comments(Request $request)
+    {
+        $comment = new Comments();
+
+        $form = $this -> createForm(CommentsType::class, $comment);
+
+        $form -> handleRequest($request);
+
+        return [];
+
     }
 
 }
