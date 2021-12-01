@@ -1,0 +1,16 @@
+{% extends 'presentation/layout.html.twig' %}
+
+{% block stylesheets %}
+  {{ parent() }}
+        {{ encore_entry_link_tags('comments') }}
+{% endblock %}
+
+{% block body %}
+
+ {% include "/includes/_comments_list.html.twig" %}
+{% endblock %}
+
+ {% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('presentation') }}
+  {% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% trans %}Gestion des commentaires{% endtrans %}{% endblock %}
+
+{% block body %}
+    <h1>{% trans %}Gestion des commentaires{% endtrans %}</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>{% trans %}Commentaire{% endtrans %}</th>
+                <th>{% trans %}Actif{% endtrans %}</th>
+                <th>{% trans %}Email{% endtrans %}</th>
+                <th>{% trans %}Pseudo{% endtrans %}</th>
+                <th>{% trans %}Validation de CGU{% endtrans %}</th>
+                <th>{% trans %}Date de création{% endtrans %}</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for comment in comments %}
+            <tr>
+                <td>{{ comment.id }}</td>
+                <td>{{ comment.content }}</td>
+                <td>{{ comment.active ? 'Yes' : 'No' }}</td>
+                <td>{{ comment.email }}</td>
+                <td>{{ comment.pseudo }}</td>
+                <td>{{ comment.compliance ? 'Yes' : 'No' }}</td>
+                <td>{{ comment.createdAt ? comment.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('comments_show', {'id': comment.id}) }}">{% trans %}Détails{% endtrans %}</a>
+                    <a href="{{ path('comments_edit', {'id': comment.id}) }}">{% trans %}Edition{% endtrans %}</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

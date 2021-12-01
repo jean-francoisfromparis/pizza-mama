@@ -1,0 +1,39 @@
+<div class="row position">
+  <div class="col-lg-4"></div>
+  <div class="col-lg-4">
+    <div class="">
+      <h1 class="h3 mb-5 font-weight-normal text-center position1">{% trans %}Laissez nous un commentaire !{% endtrans %}</h1>
+      <div class="card my-5 border boder-2 mx-auto position2 position-relative" style="max-width: 540px;">
+        <div class="rounded-circle circle position2 position-absolute top-0 start-50 translate-middle pizza-circle"></div>
+        <div class="row g-0">
+          <div
+            class="col-lg-6 left-col">{# <img src="{{ asset('build/images/pizza.jpg') }}" class="img-fluid rounded-start d-none d-md-block" alt="miam une pizza" style="max-width:270px; max-height:600px"> #}
+          </div>
+          <div class="col-lg-6">
+            <div class="card-body text-center justify-content-center my-5">
+              {{ form_start(form, { 'attr': { 'id': 'post-form'} } ) }}
+
+              {{ form_row(form.email) }}
+
+              {{ form_row(form.pseudo) }}
+
+              {{ form_row(form.content) }}
+
+              {# {{ form_row(form.products) }} #}
+
+              {{ form_row(form.compliance,
+                {'label': 'Acceptez-vous la conservation des données enregistrées ?'}) }}
+
+              {{ form_row(form.send,{ 'label': 'Envoyer'}) }}
+
+              {{ form_end(form) }}
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+</form>
+<div class="col-lg-4"></div></div>

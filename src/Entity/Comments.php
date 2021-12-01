@@ -45,18 +45,12 @@ class Comments
     private $compliance = false;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="comments")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\Column(type="datetime_immutable")
      */
-    private $products;
+    private $createdAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Comments::class, inversedBy="replies")
-     */
-    private $parent;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Comments::class, mappedBy="parent")
+     * @ORM\OneToMany(targetEntity=Reply::class, mappedBy="parent", orphanRemoval=true)
      */
     private $replies;
 
@@ -130,39 +124,27 @@ class Comments
         return $this;
     }
 
-    public function getProducts(): ?Product
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
-        return $this->products;
+        return $this->createdAt;
     }
 
-    public function setProducts(?Product $products): self
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
     {
-        $this->products = $products;
-
-        return $this;
-    }
-
-    public function getParent(): ?self
-    {
-        return $this->parent;
-    }
-
-    public function setParent(?self $parent): self
-    {
-        $this->parent = $parent;
+        $this->createdAt = $createdAt;
 
         return $this;
     }
 
     /**
-     * @return Collection|self[]
+     * @return Collection|Reply[]
      */
     public function getReplies(): Collection
     {
         return $this->replies;
     }
 
-    public function addReply(self $reply): self
+    public function addReply(Reply $reply): self
     {
         if (!$this->replies->contains($reply)) {
             $this->replies[] = $reply;
@@ -172,7 +154,7 @@ class Comments
         return $this;
     }
 
-    public function removeReply(self $reply): self
+    public function removeReply(Reply $reply): self
     {
         if ($this->replies->removeElement($reply)) {
             // set the owning side to null (unless already changed)

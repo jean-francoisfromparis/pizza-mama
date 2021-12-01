@@ -13,12 +13,16 @@ use App\Service\Cart\CartService;
 use App\Repository\ProductRepository;
 
 use App\Repository\CategoryRepository;
+use App\Repository\CommentsRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use function PHPUnit\Framework\classHasAttribute;
 use function PHPUnit\Framework\objectHasAttribute;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
@@ -140,13 +144,45 @@ class PresentationController extends AbstractController
     public function comments(Request $request)
     {
         $comment = new Comments();
-
         $form = $this -> createForm(CommentsType::class, $comment);
 
-        $form -> handleRequest($request);
+        $form->handleRequest($request);
 
-        return [];
+        if($form->isSubmitted() && $form->isValid()){
 
+            // dd($form->getData('products'));
+            $entityManager = $this->getDoctrine()->getManager();
+            $comment->setcreatedAt(new \DateTimeImmutable());
+            // $product = $form->getData('products');
+
+            // $comment->setProducts($product);
+            $entityManager->persist($comment);
+            $entityManager->flush();
+            $this->addFlash('message', 'Votre commentaire a été envoyé');
+            return $this->redirectToRoute('app_presentation_presentation');
+        }
+
+        return [
+            'form' =>$form->createView(),
+            'title' => 'Créer un nouveau commentaire'
+        ];
     }
 
+    /**
+     * showComments
+     * @IsGranted("ROLE_USER", statusCode=404, message="Pour accéder à cette page vous devez être connecté")
+     * @Route("/presentation/affichage_des_commentaires")
+     * @Template
+     * @return void
+     */
+    public function showComments(CommentsRepository $repo, UserInterface $user)
+    {
+
+        $email =$user->getUserIdentifier();
+        $commentsByEmail = $repo->findByEmail($email);
+        return [
+            'email' => $email,
+            'comments' => $commentsByEmail,
+        ];
+    }
 }

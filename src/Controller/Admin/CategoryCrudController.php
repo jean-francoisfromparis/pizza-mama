@@ -5,7 +5,9 @@ namespace App\Controller\Admin;
 use App\Entity\Category;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -56,5 +58,20 @@ class CategoryCrudController extends AbstractCrudController
                 ->setFormType(EntityType::class)
                 ->onlyOnDetail(),
         ];
+    }
+
+    /**
+     * configureActions
+     *
+     * @param  mixed $actions
+     * @return Actions
+     */
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions
+        ->setPermission(Action::NEW, 'ROLE_ADMIN')
+        ->setPermission(Action::EDIT, 'ROLE_ADMIN')
+        ->setPermission(Action::DELETE, 'ROLE_ADMIN') //TODOs add a super admin for all delete actions in dashboard
+    ;
     }
 }
