@@ -1,6 +1,9 @@
 import './styles/app.scss';
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "@fortawesome/fontawesome-free/js/all.js";
+import $ from 'jquery';
+global.$ = $;
+
 /*
  * Welcome to your app's main JavaScript file!
  *
@@ -13,5 +16,5 @@ import "@fortawesome/fontawesome-free/js/all.js";
 
 // start the Stimulus application
 
-import $ from 'jquery';
-global.$ = $;
+
+import './scripts/intro.js';

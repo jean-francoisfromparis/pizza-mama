@@ -6,6 +6,7 @@ use App\Entity\Product;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
@@ -108,7 +109,21 @@ class ProductCrudController extends AbstractCrudController
     {
         return $filters
             ->add('category')
-            // ->add('price')
         ;
+    }
+
+    /**
+     * configureActions
+     *
+     * @param  mixed $actions
+     * @return Actions
+     */
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions
+        ->setPermission(Action::NEW, 'ROLE_ADMIN')
+        ->setPermission(Action::EDIT, 'ROLE_ADMIN')
+        ->setPermission(Action::DELETE, 'ROLE_ADMIN') //TODOs add a super admin for all delete actions in dashboard
+    ;
     }
 }

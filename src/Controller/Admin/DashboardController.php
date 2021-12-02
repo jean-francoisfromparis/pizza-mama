@@ -3,17 +3,23 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
+use App\Entity\Reply;
 use App\Entity\Product;
 use App\Entity\Category;
+use App\Entity\Comments;
 use App\Repository\UserRepository;
+use App\Repository\ReplyRepository;
 use App\Repository\ProductRepository;
 use App\Repository\CategoryRepository;
+use App\Repository\CommentsRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Asset;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
+use EasyCorp\Bundle\EasyAdminBundle\Config\UserMenu;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
+use Symfony\Component\Security\Core\User\UserInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -26,6 +32,8 @@ class DashboardController extends AbstractDashboardController
     protected $user;
     protected $category;
     protected $product;
+    protected $comments;
+    protected $reply;
 
     /**
      * __construct
@@ -35,11 +43,13 @@ class DashboardController extends AbstractDashboardController
     public function __construct(
         UserRepository $user,
         CategoryRepository $category,
-        ProductRepository $product
+        ProductRepository $product,
+        CommentsRepository $comments
     ) {
         $this->UserRepository = $user;
         $this->CategoryRepository = $category;
         $this->ProductRepository = $product;
+        $this->CommentsRepository = $comments;
     }
 
     /**
@@ -51,7 +61,7 @@ class DashboardController extends AbstractDashboardController
      */
     public function index(): Response
     {
-        // you can also redirect to different pages depending on the current user
+
         if ('jane' === $this->getUser()->getUsername()) {
             return $this->redirect('...');
         }
@@ -109,13 +119,34 @@ class DashboardController extends AbstractDashboardController
         );
         yield MenuItem::linkToCrud(
             'Produits',
-            'fas fa-hamburger  mb-5',
+            'fas fa-hamburger mb-5',
             Product::class
         );
+        MenuItem::section('Users');
         yield MenuItem::linkToCrud(
             'Utilisateurs',
-            ' fa fa-users  mb-5',
+            ' fa fa-users mb-5',
             User::class
         );
+        yield MenuItem::linkToRoute(
+            'Commentaires',
+            ' far fa-comments mb-5',
+            'comments_index'
+        );
+        // yield MenuItem::linkToRoute(
+        //     'Réponses',
+        //     ' far fa-paper-plane mb-5',
+        //     'comments_index'
+        // );
+    }
+
+    public function configureUserMenu(UserInterface $user): UserMenu
+    {
+
+        return parent::configureUserMenu($user)
+
+            ->setName($user->getUserIdentifier())
+
+   ;
     }
 }

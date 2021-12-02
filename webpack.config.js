@@ -27,8 +27,10 @@ Encore
   .addEntry('app', './assets/app.js')
   .addEntry('presentation', './assets/presentation.js')
   .addStyleEntry('order', './assets/styles/order.scss')
+  .addStyleEntry('comments', './assets/styles/comments.scss')
   // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
   .enableStimulusBridge('./assets/controllers.json')
+  .enableVueLoader()
 
   // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
   .splitEntryChunks()

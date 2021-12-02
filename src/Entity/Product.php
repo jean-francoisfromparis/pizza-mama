@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Entity\Category;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ProductRepository;
 use Gedmo\Mapping\Annotation\SoftDeleteable;
@@ -71,6 +73,21 @@ class Product
      * @ORM\JoinColumn(nullable=false)
      */
     private $category;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $discount;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Comments::class, mappedBy="products", orphanRemoval=true)
+     */
+    private $comments;
+
+    public function __construct()
+    {
+        $this->comments = new ArrayCollection();
+    }
 
     public function __toString()
     {
@@ -182,5 +199,47 @@ class Product
             // otherwise the event listeners won't be called and the file is lost
             $this->updatedAt = new \DateTimeImmutable();
         }
+    }
+
+    public function getDiscount(): ?bool
+    {
+        return $this->discount;
+    }
+
+    public function setDiscount(?bool $discount): self
+    {
+        $this->discount = $discount;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Comments[]
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comments $comment): self
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
+            $comment->setProducts($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comments $comment): self
+    {
+        if ($this->comments->removeElement($comment)) {
+            // set the owning side to null (unless already changed)
+            if ($comment->getProducts() === $this) {
+                $comment->setProducts(null);
+            }
+        }
+
+        return $this;
     }
 }

@@ -1,0 +1,34 @@
+<div class="row position">
+  <div class="col-lg-4"></div>
+  <div class="col-lg-4">
+    <div class="">
+      <h1 class="h3 mb-5 font-weight-normal text-center position1">{% trans %}Vos commentaires !{% endtrans %}</h1>
+      <div class="border border-2 mx-auto position2 position-relative bg-white content-box">
+        <div class="rounded-circle circle position2 position-absolute top-0 start-50 translate-middle pizza-circle comment-circle-bg-image"></div>
+        <div class="card-body mx-auto text-center justify-content-center border border-primary-1 comment-box my-5">
+          {% if comments %}
+
+            {% for comment in comments %}
+
+              <button type="button" data-bs-toggle="modal" data-bs-target="#modalComment{{ comment.id }}" class="btn btn-outline-primary fs-6">
+               Commentaire du :
+                {{ comment.createdAt |date("d/m/Y") }}
+              </button>
+              <div class="message-box rounded-pill border border-primary border-1 mt-2 p-1">
+              <span class="d-block ms-4"><u>Pseudo</u> : {{ comment.pseudo }}</span>
+              <span class="d-block ms-4"><u>Email</u> : {{ comment.email }}</span>
+              <span  class="d-block  ms-4 my-2"><u>Commentaire</u> : {{ comment.content }}</span>
+              </div>
+ <span class=""><a href=" {{ path('app_presentation_comments') }} ">{% trans %}Vous pouvez nous faire vos commentaires sur la page suivante{% endtrans %}</a>
+            {% endfor %}
+            {% else %}
+            <span>{% trans %}Vous n'avez pas de commentaires{% endtrans %}</span>
+            <span class=""><a href=" {{ path('app_presentation_comments') }} ">{% trans %}Vous pouvez nous faire vos commentaires sur la page suivante{% endtrans %}</a>
+            </span>
+          {% endif %}
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

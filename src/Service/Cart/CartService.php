@@ -7,7 +7,7 @@ use App\Repository\ProductRepository;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
- * CartService
+ * CartService defined the methode to calculate and render the cart
  */
 class CartService
 {
@@ -19,7 +19,6 @@ class CartService
     {
         $this ->session = $session;
         $this ->productRepository = $productRepository;
-        // $this ->product = $product;
     }
 
 

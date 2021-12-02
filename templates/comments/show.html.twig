@@ -1,0 +1,87 @@
+{% extends 'comments/layout.html.twig' %}
+
+{% block title %}
+  {% trans %}Commentaire{% endtrans %}
+{% endblock %}
+
+{% block body %}
+
+  <div class="row">
+    <div class="d-none d-md-block col-lg-4"></div>
+    <div class="col-lg-4">
+      <div class="">
+        <h1 class="h3 mb-5 font-weight-normal text-center position1">{% trans %}Commentaire : reçu le{% endtrans %}
+          <span class="text-muted">
+            {{ comment.createdAt ? comment.createdAt|date('Y-m-d H:i:s') : '' }}</span>
+        </h1>
+        <div class="border border-2 mx-auto position2 position-relative bg-white content-box shadow-lg">
+          <div class="rounded-circle circle position2 position-absolute top-0 start-50 translate-middle comment-circle-bg-image"></div>
+          <div class="card-body mx-auto justify-content-center border border-primary-1 comment-box my-5">
+
+            <table class="table table-striped">
+              <thead>
+                <h5>Répondre au commentaire</h5>
+                {{ form_start(form) }}
+
+                {{ form_row(form.reply) }}
+
+                <div class="form-floating mb-3">
+                  <input type="email" class="form-control" id="reply_email" name="reply[email]" value="{{ comment.email }}">
+                </div>
+
+                {{ form_row(form.submit) }}
+
+                {{ form_end(form) }}
+                {# {{ form_widget(form) }} #}
+              </thead>
+              <tbody>
+                <tr>
+                  <th>Id</th>
+                  <td>{{ comment.id }}</td>
+                </tr>
+                <tr>
+                  <th>{% trans %}Commentaire{% endtrans %}</th>
+                  <td>{{ comment.content }}</td>
+                </tr>
+                <tr>
+                  <th>{% trans %}Actif{% endtrans %}</th>
+                  <td>{{ comment.active ? 'Yes' : 'No' }}</td>
+                </tr>
+                <tr>
+                  <th>{% trans %}Email{% endtrans %}</th>
+                  <td>{{ comment.email }}</td>
+                </tr>
+                <tr>
+                  <th>{% trans %}Pseudo{% endtrans %}</th>
+                  <td>{{ comment.pseudo }}</td>
+                </tr>
+                <tr>
+                  <th>{% trans %}Validation des Conditions d’Utilisations des Données{% endtrans %}</th>
+                  <td>{{ comment.compliance ? 'Yes' : 'No' }}</td>
+                </tr>
+                <tr>
+                  <th>{% trans %}Date de création{% endtrans %}</th>
+                  <td>{{ comment.createdAt ? comment.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                </tr>
+              </tbody>
+              <tfoot></tfoot>
+            </table>
+
+
+          </div>
+          <div class="card-footer">
+            <div class="row text-center">
+              <div class="col-6">
+                <a class="btn btn-primary" href="{{ path('comments_index') }}">{% trans %}Retour{% endtrans %}
+                </a>
+              </div>
+              <div class="col-6">{{ include('comments/_delete_form.html.twig') }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock %}
