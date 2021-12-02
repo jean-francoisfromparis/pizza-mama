@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'comments/layout.html.twig' %}
 
 {% block title %}{% trans %}Gestion des commentaires{% endtrans %}{% endblock %}
 
@@ -13,7 +13,7 @@
                 <th>{% trans %}Actif{% endtrans %}</th>
                 <th>{% trans %}Email{% endtrans %}</th>
                 <th>{% trans %}Pseudo{% endtrans %}</th>
-                <th>{% trans %}Validation de CGU{% endtrans %}</th>
+                <th>{% trans %}Validation des Conditions d’Utilisations des Données{% endtrans %}</th>
                 <th>{% trans %}Date de création{% endtrans %}</th>
                 <th>actions</th>
             </tr>
@@ -29,7 +29,7 @@
                 <td>{{ comment.compliance ? 'Yes' : 'No' }}</td>
                 <td>{{ comment.createdAt ? comment.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('comments_show', {'id': comment.id}) }}">{% trans %}Détails{% endtrans %}</a>
+                    <a href="{{ path('app_comments_show', {'id': comment.id}) }}">{% trans %}Détails{% endtrans %}</a>
                     <a href="{{ path('comments_edit', {'id': comment.id}) }}">{% trans %}Edition{% endtrans %}</a>
                 </td>
             </tr>

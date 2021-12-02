@@ -44,14 +44,12 @@ class DashboardController extends AbstractDashboardController
         UserRepository $user,
         CategoryRepository $category,
         ProductRepository $product,
-        CommentsRepository $comments,
-        ReplyRepository $reply
+        CommentsRepository $comments
     ) {
         $this->UserRepository = $user;
         $this->CategoryRepository = $category;
         $this->ProductRepository = $product;
         $this->CommentsRepository = $comments;
-        $this->ReplyRepository = $reply;
     }
 
     /**
@@ -130,16 +128,16 @@ class DashboardController extends AbstractDashboardController
             ' fa fa-users mb-5',
             User::class
         );
-        yield MenuItem::linkToCrud(
+        yield MenuItem::linkToRoute(
             'Commentaires',
             ' far fa-comments mb-5',
-            Comments::class
+            'comments_index'
         );
-        yield MenuItem::linkToCrud(
-            'Réponses',
-            ' far fa-paper-plane mb-5',
-            Reply::class
-        );
+        // yield MenuItem::linkToRoute(
+        //     'Réponses',
+        //     ' far fa-paper-plane mb-5',
+        //     'comments_index'
+        // );
     }
 
     public function configureUserMenu(UserInterface $user): UserMenu

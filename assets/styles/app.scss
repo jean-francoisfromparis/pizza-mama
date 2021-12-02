@@ -292,6 +292,10 @@ p span.cursor.typing {
   border-color: crimson; //TODOs mettre la variable globale bg-fade
 }
 
+.comment-circle-bg-image{
+  background-image: url(../images/circle-pizza.jpg);
+}
+
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
   .pizza-circle {
     background-image: url(../images/circle-pizza.jpg);

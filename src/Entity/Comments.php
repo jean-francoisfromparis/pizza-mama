@@ -50,9 +50,14 @@ class Comments
     private $createdAt;
 
     /**
-     * @ORM\OneToMany(targetEntity=Reply::class, mappedBy="parent", orphanRemoval=true)
+     * @ORM\Column(type="text", nullable=true)
      */
-    private $replies;
+    private $reply;
+
+    /**
+     * @ORM\Column(type="datetime_immutable", nullable=true)
+     */
+    private $sendAt;
 
     public function __construct()
     {
@@ -136,32 +141,26 @@ class Comments
         return $this;
     }
 
-    /**
-     * @return Collection|Reply[]
-     */
-    public function getReplies(): Collection
+    public function getReply(): ?string
     {
-        return $this->replies;
+        return $this->reply;
     }
 
-    public function addReply(Reply $reply): self
+    public function setReply(?string $reply): self
     {
-        if (!$this->replies->contains($reply)) {
-            $this->replies[] = $reply;
-            $reply->setParent($this);
-        }
+        $this->reply = $reply;
 
         return $this;
     }
 
-    public function removeReply(Reply $reply): self
+    public function getSendAt(): ?\DateTimeImmutable
     {
-        if ($this->replies->removeElement($reply)) {
-            // set the owning side to null (unless already changed)
-            if ($reply->getParent() === $this) {
-                $reply->setParent(null);
-            }
-        }
+        return $this->sendAt;
+    }
+
+    public function setSendAt(?\DateTimeImmutable $sendAt): self
+    {
+        $this->sendAt = $sendAt;
 
         return $this;
     }

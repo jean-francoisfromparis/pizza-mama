@@ -150,12 +150,9 @@ class PresentationController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid()){
 
-            // dd($form->getData('products'));
             $entityManager = $this->getDoctrine()->getManager();
             $comment->setcreatedAt(new \DateTimeImmutable());
-            // $product = $form->getData('products');
 
-            // $comment->setProducts($product);
             $entityManager->persist($comment);
             $entityManager->flush();
             $this->addFlash('message', 'Votre commentaire a été envoyé');

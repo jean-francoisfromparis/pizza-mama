@@ -98,19 +98,10 @@ class CommentsCrudController extends AbstractCrudController
      */
     public function configureActions(Actions $actions): Actions
     {
-        $reply = Action::new('reply_crud_controller', 'Réponse', 'far fa-paper-plane')
-            ->displayAsButton()
-            ->linkToRoute(Action::EDIT, function (Comments $comments): array {
-                return [
-                    'parentId' => $comments->getId(),
-                    'email' => $comments->getEmail(),
-                ];
 
-            });
         return $actions
             ->setPermission(Action::NEW, 'ROLE_ADMIN')
             // ->remove(Crud::PAGE_INDEX, Action::EDIT)
-            ->add(Crud::PAGE_EDIT, $reply)
             ->setPermission(Action::DELETE, 'ROLE_ADMIN') //TODOs add a super admin for all delete actions in dashboard
 
         ;

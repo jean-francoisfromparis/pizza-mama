@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Comments;
+use App\Form\CommentsReplyType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -18,7 +19,18 @@ class Comments1Type extends AbstractType
             ->add('pseudo')
             ->add('compliance')
             ->add('createdAt')
-        ;
+            // ->add(
+            //     'reply',
+            //     CommentsReplyType::class,
+            //     [
+            //         'required' => false,
+            //         'label' => false,
+            //         'attr' => [
+            //             'class' => 'd-none',
+            //         ],
+            //     ]
+            // )
+            ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
