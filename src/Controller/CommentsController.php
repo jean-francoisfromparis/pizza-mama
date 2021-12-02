@@ -64,7 +64,7 @@ class CommentsController extends AbstractController
 
     /**
      * @IsGranted("ROLE_ADMIN", statusCode=404, message="Pour accéder à cette page vous devez être connecté en tant qu'administrateur")
-     * @Route("/{id}")
+     * @Route("/{id}", methods={"GET"})
      * @Template
      */
     public function show(
@@ -81,22 +81,22 @@ class CommentsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $text = $form->get('reply')->getData();
 
-            $comment -> setReply($text);
+            $comment->setReply($text);
 
             $em->flush();
 
             $email = (new TemplatedEmail())
-            ->from('pizze.mama.it@gmail.com')
-            ->to(new Address($comment->getEmail()))
-            ->subject('Merci pour commentaire')
+                ->from('pizze.mama.it@gmail.com')
+                ->to(new Address($comment->getEmail()))
+                ->subject('Merci pour commentaire')
 
-            // path of the Twig template to render
-            ->htmlTemplate('comments/email/email.html.twig')
+                // path of the Twig template to render
+                ->htmlTemplate('comments/email/email.html.twig')
 
-            // pass variables (name => value) to the template
-            ->context([
-                'comment' => $comment,
-            ]);
+                // pass variables (name => value) to the template
+                ->context([
+                    'comment' => $comment,
+                ]);
             $mailer->send($email);
             return $this->redirectToRoute('comments_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -134,9 +134,8 @@ class CommentsController extends AbstractController
      */
     public function delete(Request $request, Comments $comment): Response
     {
-
         if ($this->isCsrfTokenValid('delete' . $comment->getId(), $request->request->get('_token'))) {
-            dd($this->isCsrfTokenValid('delete' . $comment->getId(), $request->request->get('_token')));
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($comment);
             $entityManager->flush();

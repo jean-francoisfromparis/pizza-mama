@@ -3,7 +3,7 @@
   <div class="col-lg-4">
     <div class="">
       <h1 class="h3 mb-5 font-weight-normal text-center position1">{% trans %}Laissez nous un commentaire !{% endtrans %}</h1>
-      <div class="card my-5 border boder-2 mx-auto position2 position-relative" style="max-width: 540px;">
+      <div class="card my-5 border boder-2 mx-auto position2 position-relative noHover shadow-lg" style="max-width: 540px;">
         <div class="rounded-circle circle position2 position-absolute top-0 start-50 translate-middle pizza-circle"></div>
         <div class="row g-0">
           <div
@@ -27,13 +27,17 @@
               {{ form_row(form.send,{ 'label': 'Envoyer'}) }}
 
               {{ form_end(form) }}
-
+              <a class="btn btn-default" href="{{ path('app_presentation_presentation') }}">retour à la commande</a>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <div class="menu-container">
+  {% include '/includes/menu.html.twig' %}
+  </div>
+
   <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 </form>
 <div class="col-lg-4"></div></div>

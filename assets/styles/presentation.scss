@@ -351,6 +351,15 @@ body {
   z-index: -1000;
 }
 
+.menu-container {
+  position:absolute;
+  bottom:0;
+}
+
+.noHover{
+  pointer-events: none;
+}
+
 @media screen and (max-width: 620px) {
 .searchBox:hover > .searchInput {
   width: 150px;

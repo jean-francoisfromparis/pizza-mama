@@ -11,35 +11,24 @@
             {% for comment in comments %}
 
               <button type="button" data-bs-toggle="modal" data-bs-target="#modalComment{{ comment.id }}" class="btn btn-outline-primary fs-6">
-                Commentaire du :
+               Commentaire du :
                 {{ comment.createdAt |date("d/m/Y") }}
               </button>
               <div class="message-box rounded-pill border border-primary border-1 mt-2 p-1">
-                <span class="d-block ms-4">
-                  <u>Pseudo</u>
-                  :
-                  {{ comment.pseudo }}</span>
-                <span class="d-block ms-4">
-                  <u>Email</u>
-                  :
-                  {{ comment.email }}</span>
-                <span class="d-block  ms-4 my-2">
-                  <u>Commentaire</u>
-                  :
-                  {{ comment.content }}</span>
+              <span class="d-block ms-4"><u>Pseudo</u> : {{ comment.pseudo }}</span>
+              <span class="d-block ms-4"><u>Email</u> : {{ comment.email }}</span>
+              <span  class="d-block  ms-4 my-2"><u>Commentaire</u> : {{ comment.content }}</span>
               </div>
-              <span class="">
-                <a href=" {{ path('app_presentation_comments') }} ">{% trans %}Vous pouvez nous faire vos commentaires sur la page suivante{% endtrans %}</a>
-              {% endfor %}
+ <span class=""><a href=" {{ path('app_presentation_comments') }} ">{% trans %}Vous pouvez nous faire vos commentaires sur la page suivante{% endtrans %}</a>
+            {% endfor %}
             {% else %}
-              <span>{% trans %}Vous n'avez pas de commentaires{% endtrans %}</span>
-              <span class="">
-                <a href=" {{ path('app_presentation_comments') }} ">{% trans %}Vous pouvez nous faire vos commentaires sur la page suivante{% endtrans %}</a>
-              </span>
-            {% endif %}
+            <span>{% trans %}Vous n'avez pas de commentaires{% endtrans %}</span>
+            <span class=""><a href=" {{ path('app_presentation_comments') }} ">{% trans %}Vous pouvez nous faire vos commentaires sur la page suivante{% endtrans %}</a>
+            </span>
+          {% endif %}
 
-          </div>
         </div>
       </div>
     </div>
   </div>
+</div>
