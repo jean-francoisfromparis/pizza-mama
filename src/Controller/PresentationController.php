@@ -72,13 +72,43 @@ class PresentationController extends AbstractController
     }
 
     /**
+     * @Route("/gallery")
+     * @Template
+     * @return array
+     */
+    public function gallery(
+        CategoryRepository $categories,
+        ProductRepository $products,
+        CartService $cartService,
+        Request $request
+    ) {
+        $data = new SearchData();
+
+        $form = $this->createForm(SearchForm::class, $data);
+        $form->handleRequest($request);
+        $result = $products->search($data);
+
+        // dd($form);
+        $AllCategories = $categories->findAll();
+        $AllProducts = $products->findAllAvailable();
+        return [
+            'results' => $result,
+            'form' => $form->createView(),
+            'categories' => $AllCategories,
+            'AllProducts' => $AllProducts,
+            'items' => $cartService->getFullCart(),
+            'total' => $cartService->getTotal(),
+        ];
+    }
+
+    /**
      * @Route("/presentation/add/{id}", name="cart_add")
      * @return void
      */
     public function add($id, CartService $cartService)
     {
         $cartService->add($id);
-        return $this->redirectToRoute('app_presentation_presentation');
+        return $this->redirectToRoute('app_presentation_gallery');
     }
 
     /**
@@ -89,7 +119,7 @@ class PresentationController extends AbstractController
     public function remove($id, CartService $cartService)
     {
         $cartService->remove($id);
-        return $this->redirectToRoute('app_presentation_presentation');
+        return $this->redirectToRoute('app_presentation_gallery');
     }
 
     /**

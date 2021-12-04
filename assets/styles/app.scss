@@ -272,11 +272,14 @@ p span.cursor.typing {
 .footer {
   position: fixed;
   bottom: 0;
-  width: 100%;
-  height: 6vh;
+  width: 100vw;
+  height: 8vh;
   text-align: center;
   background-color: #fff;
+  z-index: 1000;
 }
+
+
 
 .jfl {
   font: 10rem 'Alex Brush', cursive, 'Roboto', 'Trebuchet MS', Helvetica,
@@ -292,7 +295,7 @@ p span.cursor.typing {
   border-color: crimson; //TODOs mettre la variable globale bg-fade
 }
 
-.comment-circle-bg-image{
+.comment-circle-bg-image {
   background-image: url(../images/circle-pizza.jpg);
 }
 
@@ -303,5 +306,13 @@ p span.cursor.typing {
 
   .margintop {
     margin-top: 40px;
+  }
+
+  .footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 18vh;
+    z-index: 1000;
   }
 }

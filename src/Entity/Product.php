@@ -20,7 +20,7 @@ use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
  * @ORM\Entity(repositoryClass=ProductRepository::class)
  * @Vich\Uploadable
  * @Gedmo\SoftDeleteable(hardDelete=false)
- * @ORM\Table(name="Product", indexes={@ORM\Index(columns={"name", "description"}, flags={"fulltext"})})
+ * @ORM\Table(name="product", indexes={@ORM\Index(columns={"name", "description"}, flags={"fulltext"})})
  */
 class Product
 {
@@ -79,10 +79,6 @@ class Product
      */
     private $discount;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Comments::class, mappedBy="products", orphanRemoval=true)
-     */
-    private $comments;
 
     public function __construct()
     {
@@ -209,36 +205,6 @@ class Product
     public function setDiscount(?bool $discount): self
     {
         $this->discount = $discount;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Comments[]
-     */
-    public function getComments(): Collection
-    {
-        return $this->comments;
-    }
-
-    public function addComment(Comments $comment): self
-    {
-        if (!$this->comments->contains($comment)) {
-            $this->comments[] = $comment;
-            $comment->setProducts($this);
-        }
-
-        return $this;
-    }
-
-    public function removeComment(Comments $comment): self
-    {
-        if ($this->comments->removeElement($comment)) {
-            // set the owning side to null (unless already changed)
-            if ($comment->getProducts() === $this) {
-                $comment->setProducts(null);
-            }
-        }
 
         return $this;
     }
