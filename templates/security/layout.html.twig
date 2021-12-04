@@ -9,5 +9,6 @@
 {% endblock %}
 
 {% block javascripts %}
- {{ encore_entry_script_tags('login') }}
+ {{ parent() }}
+ {{ encore_entry_script_tags('presentation') }}
  {% endblock %}

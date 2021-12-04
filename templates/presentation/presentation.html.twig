@@ -11,13 +11,13 @@
 {% endblock %}
 
 {% block body %}
+
   {% include '/includes/navbar.html.twig' %}
 
   <div class="row show m-0"></div>
 
   <div class="row text-center m-0 product-card">
     <div class="title-bar text-start">
-      {# <div clas="row resultBox"> #}
 
         <div class="col-md-5 offset-md-3 bg-lightgray-search">
           {% for result in results %}
@@ -25,17 +25,15 @@
           {% endfor %}
         </div>
         <div class="col-md-4 d-block"></div>
-      {# </div> #}
-
 
       <div
         id="list-example" class="list-group col-md-1 mt-5 rounded-pill">
         {# TODOs: mettre le list groupe sur un select avec défilement de la valeur active#}
-        <a class="list-group-item list-group-item-action" href="#list-item-1">Pizze</a>
-        <a class="list-group-item list-group-item-action" href="#list-item-2">Pâtes</a>
-        <a class="list-group-item list-group-item-action" href="#list-item-3">Boissons 33cl</a>
-        <a class="list-group-item list-group-item-action" href="#list-item-4">Boissons 50cl</a>
-        <a class="list-group-item list-group-item-action" href="#list-item-5">Dessert</a>
+        <a class="list-group-item list-group-item-action" href="#list-item-1">Pizze <i class="fas fa-pizza-slice ms-2"></i></a>
+        <a class="list-group-item list-group-item-action" href="#list-item-2">Pâtes <img class="ms-2" src=" {{ asset('images/logo/pasta.png') }} " width="16"  alt="pasta"> </a>
+        <a class="list-group-item list-group-item-action" href="#list-item-3">Boissons 33cl <i class="fas fa-beer ms-2"></i></a>
+        <a class="list-group-item list-group-item-action" href="#list-item-4">Boissons 50cl <i class="fas fa-wine-bottle ms-2"></i></a>
+        <a class="list-group-item list-group-item-action" href="#list-item-5">Dessert <i class="fas fa-cookie ms-2"></i></a>
       </div>
     </div>
   </div>
@@ -101,7 +99,7 @@
           {% trans %}Pizze{% endtrans %}
         </span>
       </h2>
-      <div class="col-md-3"></div>
+      <div class="col-md-3 lateral-col"></div>
       <div class="col-md-5">
         <div class="row mb-4">
           {% for id in 1..(AllProducts|length) %}
@@ -121,7 +119,7 @@
         </div>
       </div>
 
-      <div class="col-md-4">
+      <div class="col-md-4 lateral-col">
 
         <div class="row">
 
@@ -138,7 +136,7 @@
             {% trans %}Pâtes{% endtrans %}
           </span>
         </h2>
-        <div class="col-md-3"></div>
+        <div class="col-md-3 lateral-col"></div>
         <div class="col-md-5">
           <div class="row mb-4">
             {% for id in 1..(AllProducts|length) %}
@@ -157,7 +155,7 @@
             {% endfor %}
           </div>
         </div>
-        <div class="col-md-4"></div>
+        <div class="col-md-4 lateral-col"></div>
       </div>
 
       <div class="row text-center m-0 product-card mb-5">
@@ -166,7 +164,7 @@
             {% trans %}Boissons 33cl{% endtrans %}
           </span>
         </h2>
-        <div class="col-md-3"></div>
+        <div class="col-md-3 lateral-col"></div>
         <div class="col-md-5">
           <div class="row mb-4">
             {% for id in 1..(AllProducts|length) %}
@@ -185,7 +183,7 @@
             {% endfor %}
           </div>
         </div>
-        <div class="col-md-4"></div>
+        <div class="col-md-4 lateral-col"></div>
       </div>
 
       <div class="row text-center m-0 product-card mb-5">
@@ -194,7 +192,7 @@
             {% trans %}Boissons 50cl{% endtrans %}
           </span>
         </h2>
-        <div class="col-md-3"></div>
+        <div class="col-md-3 lateral-col"></div>
         <div class="col-md-5">
           <div class="row mb-4">
             {% for id in 1..(AllProducts|length) %}
@@ -213,7 +211,7 @@
             {% endfor %}
           </div>
         </div>
-        <div class="col-md-4"></div>
+        <div class="col-md-4 lateral-col"></div>
       </div>
 
       <div class="row text-center m-0 product-card mb-5">
@@ -222,7 +220,7 @@
             {% trans %}Dessert{% endtrans %}
           </span>
         </h2>
-        <div class="col-md-3"></div>
+        <div class="col-md-3 lateral-col"></div>
         <div class="col-md-5">
           <div class="row mb-4">
             {% for id in 1..(AllProducts|length) %}
@@ -241,7 +239,7 @@
             {% endfor %}
           </div>
         </div>
-        <div class="col-md-4"></div>
+        <div class="col-md-4 lateral-col"></div>
       </div>
     </div>
     {% include '/includes/menu.html.twig' %}
@@ -268,8 +266,6 @@
         }
 
       });
-
- 
     </script>
   {% endblock %}
 

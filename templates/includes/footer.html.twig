@@ -1,8 +1,21 @@
+<div class="row row-cols-2 row-cols-md-3 footer">
+  <span class="m-auto col d-block fs-6 jfl">jfDevFromParis</span>
+  <span class="m-auto col d-block">
+    <i class="far fa-copyright"></i>&nbsp;&nbsp;&nbsp;{{ "now"|date("m/d/Y") }}</span>
 
-<div class="row  row-cols-2 row-cols-sm-3 footer">
-<span class="m-auto col d-block fs-6 jfl">jfDevFromParis</span>
-<span class="m-auto col d-block"><i class="far fa-copyright"></i>&nbsp;&nbsp;&nbsp;{{ "now"|date("m/d/Y") }}</span>
-<span class="m-auto col d-block">CGV</span>
-<span class="m-auto col d-block">Confidentialité</span>
-<span class="m-auto col d-block">Conditions d'Utilisations</span>
+  <a data-fancybox data-src="#cgv" class="m-auto col d-block" href="#">
+    CGV</a>
+  <a data-fancybox data-src="#rgpd" class="m-auto col d-block text-wrap" href="#">
+    Modalités de diffusion des  données</a>
+  <a data-fancybox data-src="#cu" class="m-auto col d-block text-wrap" href="#">
+    Conditions d'Utilisations</a>
+
+<div id="cgv" style="display:none; width:45vw; max-height:fit-content">
+  {% include "includes/legalDocuments/_cgv.html.twig" %}
+</div>
+<div id="rgpd" style="display:none; width:45vw; max-height:fit-content">
+  {% include "includes/legalDocuments/_rgpd.html.twig" %}
+</div>
+<div id="cu" style="display:none; width:45vw; max-height:fit-content">
+  {% include "includes/legalDocuments/_cu.html.twig" %}
 </div>

@@ -1,0 +1,94 @@
+$bg-standard: #e5e5e5;
+$bg-central-zone: #fffafa;
+$bg-central-card: darkgray;
+$bg-logo: rgba(220, 20, 60, 0.164);
+$search-time: 800ms;
+$reset-time: 150ms;
+
+body {
+  position: relative;
+  background-color: $bg-standard !important;
+  // width: 100vw;
+  max-height: fit-content;
+  // height: 100vh !important;
+  overflow-y: scroll !important;
+  scroll-behavior: smooth;
+}
+
+.nav.fixed {
+  top: 0;
+  z-index: 1000;
+  .band {
+    position: fixed;
+    overflow: hidden;
+  }
+}
+
+.list-group{
+  position:fixed;
+  top: 3vh;
+  z-index: 1030;
+}
+
+@media only screen and (min-device-width: 720px) and (max-width: 1140px) {
+
+  .list-group{
+    position:fixed;
+    margin-left: 70px;
+    top: 3vh;
+    z-index: 1030;
+    transform: rotate(-0.25turn);
+  }
+
+  .cart {
+    position: -webkit-sticky;
+    position: sticky;
+    width:380px;
+    top: 240px;
+    margin-left: 405px;
+    // z-index: 10;
+  }
+
+  .searchBox {
+    position: absolute;
+    top: 78%;
+    left: 65%;
+  }
+
+  .menu-span{
+    position:-webkit-sticky;
+    position:sticky;
+    left:30%;
+    // bottom:-37px;
+    z-index: 10;
+  }
+  }
+
+  /* Smartphones (portrait and landscape) ----------- */
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 480px) {
+  body{
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  // .menu-span{
+  //  position:fixed;
+  //   left:30%;
+  //   z-index: 10;
+  // }
+
+.cart{
+  position: -webkit-sticky;
+  position: sticky;
+  width:380px;
+  top: 210px;
+  margin-left: auto;
+}
+
+  .searchBox {
+    position: absolute;
+    top: 65%;
+    // left: 15%;
+  }
+}

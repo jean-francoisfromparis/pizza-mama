@@ -3,7 +3,7 @@ $fg: crimson;
 $pi: 3.14;
 
 //config
-$site-menu-items: 4;
+$site-menu-items: 5;
 $open-distance: 105px;
 $opening-angle: $pi * 2;
 
@@ -23,8 +23,6 @@ h1 {
 }
 %goo {
   filter: url('#shadowed-goo');
-  // debug
-  //background:rgba(255,0,0,0.2);
 }
 %ball {
   background: $fg;
@@ -150,4 +148,30 @@ $hamburger-spacing: 8px;
   height: 50px;
   align-content: center;
   grid-template-rows: 25px 25px;
+}
+
+@media only screen and (min-device-width: 720px) and (max-width: 1140px) {
+  .menu-open:checked ~ .site-menu-item {
+    transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+    @for $i from 1 through $site-menu-items {
+      &:nth-child(#{$i + 2}) {
+        transition-duration: 90ms+ (100ms * $i);
+        transform: translate3d(0, -118px * $i, 0);
+      }
+    }
+  }
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+
+  .menu-open:checked ~ .site-menu-item {
+    transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+    @for $i from 1 through $site-menu-items {
+      &:nth-child(#{$i + 2}) {
+        transition-duration: 90ms+ (100ms * $i);
+        transform: translate3d(0, -118px * $i, 0);
+      }
+    }
+  }
+
 }

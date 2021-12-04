@@ -36,7 +36,7 @@ body {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  height: 7rem;
+  height: 8rem;
   z-index: 300;
 }
 
@@ -200,7 +200,7 @@ body {
 
 .title-bar {
   position: fixed;
-  top: 100px;
+  top: 0px;
   margin-bottom: 10px;
   width: 100vw;
   height: 8rem;
@@ -267,12 +267,12 @@ body {
   transform: scale3d(1, 1, 1);
 }
 
-.Site-menu {
-  position: -webkit-sticky;
-  position: sticky;
-  transform: translateX(-15%);
-  bottom: 0;
-}
+// .Site-menu {
+//   position: -webkit-sticky;
+//   position: sticky;
+//   transform: translateX(-15%);
+//   bottom: 0;
+// }
 
 .spied {
   position: relative;
@@ -293,7 +293,7 @@ body {
   position: -webkit-sticky;
   position: sticky;
   top: 240px;
-  margin-left: 1250px;
+  margin-left: 1350px;
   z-index: 10;
 }
 
@@ -303,7 +303,7 @@ body {
 
 .searchBox {
   position: absolute;
-  top: 90%;
+  top: 65%;
   left: 80%;
   transform:  translate(-50%,50%);
   background: rgba(220, 20, 60, 0.616);
@@ -345,15 +345,15 @@ body {
 
 .bg-lightgray-search {
   position: relative;
-  top:11vh;
+  top:0;
   padding-top:10px;
   background-color: $bg-standard;
   z-index: -1000;
 }
 
-.menu-container {
-  position:absolute;
-  bottom:0;
+.menu-wrapper {
+  position:relative;
+  bottom:-10px;
 }
 
 .noHover{
@@ -365,6 +365,17 @@ body {
   width: 150px;
   padding: 0 6px;
 }
+
+.searchBox {
+  position: absolute;
+  top: 134%;
+  left: 50%;
+}
+
+.lateral-col{
+  display:none;
+}
+
 }
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
@@ -391,5 +402,27 @@ body {
     position: sticky;
     transform: translateX(28%);
     bottom: 0;
+  }
+
+  .searchBox {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+  }
+
+  .list-group{
+    width:20%;
+  }
+
+  .lateral-col{
+    display:none;
+  }
+
+  .bg-lightgray-search {
+    position: relative;
+    top:24vh;
+    padding-top:10px;
+    background-color: $bg-standard;
+    z-index: -1000;
   }
 }

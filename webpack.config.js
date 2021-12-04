@@ -18,6 +18,11 @@ Encore
 
     to: 'images/[path][name].[ext]',
   })
+  .copyFiles({
+    from: './assets/documents',
+
+    to: 'documents/[path][name].[ext]',
+  })
   /*
    * ENTRY CONFIG
    *
@@ -26,8 +31,10 @@ Encore
    */
   .addEntry('app', './assets/app.js')
   .addEntry('presentation', './assets/presentation.js')
+  .addEntry('login', './assets/login.js')
   .addStyleEntry('order', './assets/styles/order.scss')
   .addStyleEntry('comments', './assets/styles/comments.scss')
+  .addStyleEntry('gallery', './assets/styles/gallery.scss')
   // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
   .enableStimulusBridge('./assets/controllers.json')
   .enableVueLoader()
