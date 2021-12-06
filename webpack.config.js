@@ -35,6 +35,7 @@ Encore
   .addStyleEntry('order', './assets/styles/order.scss')
   .addStyleEntry('comments', './assets/styles/comments.scss')
   .addStyleEntry('gallery', './assets/styles/gallery.scss')
+  .addStyleEntry('aboutus', './assets/styles/aboutus.scss')
   // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
   .enableStimulusBridge('./assets/controllers.json')
   .enableVueLoader()

@@ -1,21 +1,84 @@
-<div class="row row-cols-2 row-cols-md-3 footer">
-  <span class="m-auto col d-block fs-6 jfl">jfDevFromParis</span>
-  <span class="m-auto col d-block">
-    <i class="far fa-copyright"></i>&nbsp;&nbsp;&nbsp;{{ "now"|date("m/d/Y") }}</span>
+<footer class="w-100 py-4 flex-shrink-0  border border-default border-top-5">
+  <div class="container py-md-4">
+    <div class="row gy-4 gx-5">
+      <div class="col-lg-4 col-md-6">
+        <h5 class="h1 text-pizza jfl fs-6">Pizza-Mama</h5>
+        <ul class="list-unstyled text-muted">
+          <li class="small text-muted">Pizze de traditions italiennes</li>
+          <li class="small text-muted mb-0">&copy; Copyrights. All rights reserved.
+          </li>
+        </ul>
+      </div>
+      <div class="col-lg-2 col-md-6">
+        <h5 class="text-pizza mb-3">Liens</h5>
+        <ul class="list-unstyled text-muted">
+          <li>
+            <a href=" {{ path('app_presentation_index') }} ">Accueil</a>
+          </li>
+          <li>
+            <a data-fancybox data-src="#cgv" class="" href="#">
+              CGV</a>
+          </li>
+          <li>
+            <a data-fancybox data-src="#rgpd" class="text-wrap" href="#">
+              Modalités de diffusion des  données</a>
+          </li>
+          <li>
+            <a data-fancybox data-src="#cu" class="text-wrap" href="#">
+              Conditions d'Utilisations</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-lg-2 col-md-6">
+        <h5 class="text-pizza mb-3">Suivez-nous !</h5>
+        <ul class="list-unstyled text-muted">
+          <li>
+            <a href="#">
+              <i class="fab fa-facebook-f text-pizza"></i>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fab fa-twitter text-pizza"></i>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fab fa-linkedin-in text-pizza"></i>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fab fa-github-alt text-pizza"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <h5 class="text-white mb-3">
+          <i class="fab fa-instagram text-pizza"></i>
+        </h5>
+        <div class="row">
+          <div class="d-flex gap-2">
+            <img src="{{ asset('images/products/20210705085325-60e2c88503f04-tartuffo-617eaed20b9e7825662999.png' ) }}" class="img-fluid img-thumbnail rounded" alt="pizza tartuffo" style="width:50px; height:50px">
+            <img src="{{ asset('images/products/20210705084359-60e2c64f244fe-piccante-617eaf5806675122755428.png' ) }}" class="img-fluid img-thumbnail rounded" alt="pizza piccante" style="width:50px; height:50px">
+          </div>
+          <div class="d-flex gap-2">
+            <img src="{{ asset('images/products/20210705090703-60e2cbb7ef53e-pepperoni-617eab10d8c77000434419.png' ) }}" class="img-fluid img-thumbnail rounded" alt="pizza pepperoni" style="width:50px; height:50px">
+            <img src="{{ asset('images/products/20210705084941-60e2c7a506eed-calzone-617eabb87a0a7263799861.png' ) }}" class="img-fluid img-thumbnail rounded" alt="pizza calzone" style="width:50px; height:50px">
+          </div>
+          {# <div class="d-grid gap-2 d-inline">
+                      <img src="{{ asset('images/products/20210705085325-60e2c88503f04-tartuffo-617eaed20b9e7825662999.png' ) }}" class="img-fluid img-thumbnail rounded-start" alt="pizza tartuffo" style="width:50px; height:50px">
+                      <img src="{{ asset('images/products/20210705085325-60e2c88503f04-tartuffo-617eaed20b9e7825662999.png' ) }}" class="img-fluid img-thumbnail rounded-start" alt="pizza tartuffo" style="width:50px; height:50px">
+                    </div> #}
+        </div>
 
-  <a data-fancybox data-src="#cgv" class="m-auto col d-block" href="#">
-    CGV</a>
-  <a data-fancybox data-src="#rgpd" class="m-auto col d-block text-wrap" href="#">
-    Modalités de diffusion des  données</a>
-  <a data-fancybox data-src="#cu" class="m-auto col d-block text-wrap" href="#">
-    Conditions d'Utilisations</a>
+      </div>
+    </div>
+  </div>
+</footer>
 
-<div id="cgv" style="display:none; width:45vw; max-height:fit-content">
-  {% include "includes/legalDocuments/_cgv.html.twig" %}
-</div>
-<div id="rgpd" style="display:none; width:45vw; max-height:fit-content">
-  {% include "includes/legalDocuments/_rgpd.html.twig" %}
-</div>
-<div id="cu" style="display:none; width:45vw; max-height:fit-content">
-  {% include "includes/legalDocuments/_cu.html.twig" %}
-</div>
+
+<div id="cgv" style="display:none; width:45vw; max-height:fit-content">{% include "includes/legalDocuments/_cgv.html.twig" %}</div>
+<div id="rgpd" style="display:none; width:45vw; max-height:fit-content">{% include "includes/legalDocuments/_rgpd.html.twig" %}</div>
+<div id="cu" style="display:none; width:45vw; max-height:fit-content">{% include "includes/legalDocuments/_cu.html.twig" %}</div>

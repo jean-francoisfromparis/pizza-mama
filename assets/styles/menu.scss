@@ -31,7 +31,7 @@ h1 {
   height: 100px;
   margin-left: -40px;
   position: absolute;
-  top: 20px;
+  // top: 20px;
   color: white;
   text-align: center;
   line-height: 50px;
@@ -91,7 +91,7 @@ $hamburger-spacing: 8px;
   $width: 650px;
   $height: 150px;
   position: absolute;
-  left: 50%;
+  // left: 50%;
   margin-left: -80px;
   padding-top: 20px;
   padding-left: 80px;
@@ -174,4 +174,10 @@ $hamburger-spacing: 8px;
     }
   }
 
+  .Site-menu{
+    $width: 150px;
+    $height: 150px;
+    width: $width;
+    height: $height;
+  }
 }

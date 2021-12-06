@@ -42,6 +42,16 @@ class PresentationController extends AbstractController
     }
 
     /**
+     * @Route("/apropos")
+     * @Template
+     * @return     array
+     */
+    public function Aboutus(): array
+    {
+        return [];
+    }
+
+    /**
      * @Route("/gallery")
      * @Template
      * @return array
@@ -58,7 +68,6 @@ class PresentationController extends AbstractController
         $form->handleRequest($request);
         $result = $products->search($data);
 
-        // dd($form);
         $AllCategories = $categories->findAll();
         $AllProducts = $products->findAllAvailable();
         return [

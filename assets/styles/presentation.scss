@@ -270,7 +270,7 @@ body {
 .Site-menu {
   position: -webkit-sticky;
   position: sticky;
-  transform: translateX(-15%);
+  // transform: translateX(-15%);
   bottom: 0;
 }
 
@@ -360,6 +360,12 @@ body {
   pointer-events: none;
 }
 
+.about-us{
+  font-size: 1.5em;
+  text-align: justify;
+  font-weight: normal;
+}
+
 @media screen and (max-width: 620px) {
 .searchBox:hover > .searchInput {
   width: 150px;
@@ -375,7 +381,6 @@ body {
 .lateral-col{
   display:none;
 }
-
 }
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
@@ -397,12 +402,7 @@ body {
   }
 
   //TODOs mettre le css pour le Site-menu
-  .Site-menu {
-    position: -webkit-sticky;
-    position: sticky;
-    transform: translateX(28%);
-    bottom: 0;
-  }
+
 
   .searchBox {
     position: absolute;

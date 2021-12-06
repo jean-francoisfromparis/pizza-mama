@@ -7,7 +7,7 @@ body {
   background-color: whitesmoke;
   width: 100vw;
   height: 100vh;
-  overflow-y: hidden;
+  overflow: hidden;
 }
 
 .position {
@@ -213,7 +213,7 @@ body {
   z-index: 10;
 }
 
-p {
+.bonjour {
   position: relative;
   top: 20vh;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
@@ -226,12 +226,12 @@ p {
   overflow: hidden;
 }
 
-p span.typed-text {
+ span.typed-text {
   font-weight: normal;
   color: crimson;
 }
 
-p span.cursor {
+span.cursor {
   display: inline-block;
   background-color: #ccc;
   margin-left: 0.1rem;
@@ -239,7 +239,7 @@ p span.cursor {
   animation: blink 1s infinite;
 }
 
-p span.cursor.typing {
+ span.cursor.typing {
   animation: none;
 }
 
@@ -269,20 +269,15 @@ p span.cursor.typing {
   z-index: 1;
 }
 
-.footer {
-  position: sticky;
-  bottom: -60px;
-  width: 100vw;
-  height: 8vh;
-  line-height: 8vh;
-  text-align: center;
-  background-color: #fff;
-  z-index: 1000;
-}
 
 .jfl {
   font: 10rem 'Alex Brush', cursive, 'Roboto', 'Trebuchet MS', Helvetica,
     sans-serif;
+}
+
+.border-default {
+  border-top: 1px solid crimson !important;
+  // border-color: crimson !important;
 }
 
 .btn-default {
@@ -298,7 +293,27 @@ p span.cursor.typing {
   background-image: url(../images/circle-pizza.jpg);
 }
 
+
+@media only screen and (min-device-width: 720px) and (max-width: 1140px) {
+  .landing-image {
+    width: 100vw;
+    height: 38vh;
+  }
+
+  .bonjour {
+    font-size: 1.5rem;
+  }
+}
+
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  .landing-image {
+    position: absolute;
+    left: -5px;
+    top: 24vh;
+    width: 100vw;
+    height: 22vh;
+  }
+
   .pizza-circle {
     background-image: url(../images/circle-pizza.jpg);
   }
@@ -307,11 +322,7 @@ p span.cursor.typing {
     margin-top: 40px;
   }
 
-  .footer {
-    position: fixed;
-    bottom: -10px;
-    width: 100%;
-    height: 18vh;
-    z-index: 1000;
+ .bonjour {
+    font-size: 0.8rem;
   }
 }

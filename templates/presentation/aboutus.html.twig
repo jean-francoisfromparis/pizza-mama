@@ -1,0 +1,39 @@
+{% extends '/presentation/layout.html.twig' %}
+
+{% block title %}
+  {{ parent() }}
+  |{% trans %}Vous pouvez commander !{% endtrans %}
+{% endblock %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css"/>
+  {{ parent() }}
+  {{ encore_entry_link_tags('aboutus') }}
+{% endblock %}
+
+{% block body %}
+
+  <div class="row w-100 mb-sm-5">
+    <div class="col-12">
+      <figure>
+        <img src=" {{ asset('build/images/logo/Header-Best-products.jpg') }} " class="img" alt="produit d’exception">
+      </figure>
+    </div>
+  </div>
+  <div class="row content w-100 mt-sm-5 mb-md-5">
+    <div class="col-sm-12 col-md-10 offset-md-2">
+      <span class="about-us my-md-4 d-block">Dans notre coeur, bat la passion du térroir des produits de tradition fait avec passion.
+        Des produits faits dans la plus pure tradition, de la mozzarella di Buffala, à l’incroyable parmigiano D.O.P. Nous travaillons essentiellement avec des petites PME familiales, des amoureux de l’artisanat qui transmettent leur savoir faire de génération en génération.</span>
+      <span class="about-us mb-md-4">Nous avons comme préoccupation la tracabilité de nos farines 00, de nos légumes, épices et des viandes et salaisons qui composent nos sauces et pizze.</span>
+    </div>
+  </div>
+<span class="menu">{% include '/includes/menu.html.twig' %}</span>
+
+  {% include '/includes/footer.html.twig' %}
+
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  {{ encore_entry_script_tags('presentation') }}
+{% endblock %}

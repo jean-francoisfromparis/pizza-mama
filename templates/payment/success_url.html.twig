@@ -20,7 +20,7 @@
         {# <div class="row"><span class="badge rounded-pill bg-title mt-5 w-25"  onclick="history.back()"> {% trans %}retour{% endtrans %}</span></div> #}
 
         <div class="col-md-6">
-        <a class="btn btn-default" href=" {{path('app_presentation_gallery')}} ">Retourner à la page de commande</a>
+        <a class="btn btn-default" href=" {{path('app_presentation_gallery')}} ">{% trans %}Retourner à la page de commande{% endtrans %}</a>
           <div
             class="card rounded-3 my-5 position2" style="min-height:405px"  id="table">
             {# cart #}
@@ -68,9 +68,9 @@
                     </tr>
                   </tfoot>
                 </table>
-                <button class="btn btn-primary" onclick="window.print()">Imprimer la facture</button>
+                <button class="btn btn-primary" onclick="window.print()">{% trans %}Imprimer la facture{% endtrans %}</button>
               {% else %}
-                <h4 class="mb-2 text-danger text-center">Vous n'avez encore rien mis dans votre panier</h4>
+                <h4 class="mb-2 text-danger text-center">{% trans %}Vous n'avez encore rien mis dans votre panier{% endtrans %}</h4>
               {% endif %}
             </div>
           </div>
@@ -89,20 +89,8 @@
                   <span class="">
                     <strong>{{ pseudo }}</strong>
                     {% trans %}votre paiement a été validé{% endtrans %}</span>
-                  <span class="text-justify">vous pouvez télécharger la facture ou la transférer par mail avec les liens ci-dessous.</span>
-                  <a href="{{path('app_payment_invoice', { 'amount': amount, 'pseudo': pseudo, 'email': email, 'id': id} )}}" class="btn btn-outline-success">{% trans %}Telecharger la facture{% endtrans %}</a>
                 </div>
-                {# <pre>
-                  {{ dump(id) }}
-                </pre>
-                <pre>
-                  {{ dump(order) }}
-                </pre>
-                <pre>
-                  {{ dump(orderLines) }}
-                </pre> #}
-
-              </div>
+                </div>
             </div>
           </div>
         </div>
