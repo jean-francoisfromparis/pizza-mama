@@ -2,7 +2,6 @@
 
 namespace App\Form;
 
-
 use App\Form\ReplyType;
 use App\Entity\Comments;
 use Symfony\Component\Form\AbstractType;

@@ -72,6 +72,6 @@ class CategoryCrudController extends AbstractCrudController
         ->setPermission(Action::NEW, 'ROLE_ADMIN')
         ->setPermission(Action::EDIT, 'ROLE_ADMIN')
         ->setPermission(Action::DELETE, 'ROLE_ADMIN') //TODOs add a super admin for all delete actions in dashboard
-    ;
+        ;
     }
 }

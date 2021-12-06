@@ -63,7 +63,7 @@ class ProductRepository extends ServiceEntityRepository
         // ->where('p.status = 1')
         ;
 
-        if(!empty($search->q)){
+        if (!empty($search->q)) {
             $query = $query
             // ->where('p.status = 1')
             ->Where('p.name like :q')

@@ -27,7 +27,7 @@ class OrderType extends AbstractType
                 'required' => false,
                 'mapped' => false,
                 'label' => false,
-                'data' => 'email@email.com',
+                // 'data' => 'email@email.com', for test purpose
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Valider',

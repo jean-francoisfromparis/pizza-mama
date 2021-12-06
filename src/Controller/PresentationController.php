@@ -8,16 +8,16 @@ use App\Data\SearchData;
 use App\Entity\Comments;
 use App\Form\SearchForm;
 use App\Form\CommentsType;
-
 use App\Service\Cart\CartService;
 use App\Repository\ProductRepository;
-
 use App\Repository\CategoryRepository;
 use App\Repository\CommentsRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+
 use function PHPUnit\Framework\classHasAttribute;
 use function PHPUnit\Framework\objectHasAttribute;
+
 use Symfony\Component\Security\Core\User\UserInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -39,36 +39,6 @@ class PresentationController extends AbstractController
     public function index(): array
     {
         return [];
-    }
-
-    /**
-     * @Route("/presentation")
-     * @Template
-     * @return array
-     */
-    public function presentation(
-        CategoryRepository $categories,
-        ProductRepository $products,
-        CartService $cartService,
-        Request $request
-    ) {
-        $data = new SearchData();
-
-        $form = $this->createForm(SearchForm::class, $data);
-        $form->handleRequest($request);
-        $result = $products->search($data);
-
-        // dd($form);
-        $AllCategories = $categories->findAll();
-        $AllProducts = $products->findAllAvailable();
-        return [
-            'results' => $result,
-            'form' => $form->createView(),
-            'categories' => $AllCategories,
-            'AllProducts' => $AllProducts,
-            'items' => $cartService->getFullCart(),
-            'total' => $cartService->getTotal(),
-        ];
     }
 
     /**
@@ -122,7 +92,7 @@ class PresentationController extends AbstractController
         return $this->redirectToRoute('app_presentation_gallery');
     }
 
-    /**
+        /**
      * Order
      * @Route("/presentation/order")
      * @Template
@@ -178,19 +148,18 @@ class PresentationController extends AbstractController
 
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()){
-
+        if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $comment->setcreatedAt(new \DateTimeImmutable());
 
             $entityManager->persist($comment);
             $entityManager->flush();
             $this->addFlash('message', 'Votre commentaire a été envoyé');
-            return $this->redirectToRoute('app_presentation_presentation');
+            return $this->redirectToRoute('app_presentation_gallery');
         }
 
         return [
-            'form' =>$form->createView(),
+            'form' => $form->createView(),
             'title' => 'Créer un nouveau commentaire'
         ];
     }
@@ -205,7 +174,7 @@ class PresentationController extends AbstractController
     public function showComments(CommentsRepository $repo, UserInterface $user)
     {
 
-        $email =$user->getUserIdentifier();
+        $email = $user->getUserIdentifier();
         $commentsByEmail = $repo->findByEmail($email);
         return [
             'email' => $email,

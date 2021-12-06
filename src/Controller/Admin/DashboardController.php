@@ -8,10 +8,12 @@ use App\Entity\Product;
 use App\Entity\Category;
 use App\Entity\Comments;
 use App\Repository\UserRepository;
+use App\Repository\OrderRepository;
 use App\Repository\ReplyRepository;
 use App\Repository\ProductRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\CommentsRepository;
+use App\Repository\OrderLineRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Asset;
@@ -44,12 +46,16 @@ class DashboardController extends AbstractDashboardController
         UserRepository $user,
         CategoryRepository $category,
         ProductRepository $product,
-        CommentsRepository $comments
+        CommentsRepository $comments,
+        OrderRepository $orderRepository,
+        OrderLineRepository $orderLineRepository
     ) {
         $this->UserRepository = $user;
         $this->CategoryRepository = $category;
         $this->ProductRepository = $product;
         $this->CommentsRepository = $comments;
+        $this->OrderRepository = $orderRepository;
+        $this->OrderLineRepository = $orderLineRepository;
     }
 
     /**
@@ -133,11 +139,11 @@ class DashboardController extends AbstractDashboardController
             ' far fa-comments mb-5',
             'comments_index'
         );
-        // yield MenuItem::linkToRoute(
-        //     'Réponses',
-        //     ' far fa-paper-plane mb-5',
-        //     'comments_index'
-        // );
+        yield MenuItem::linkToRoute(
+            'Réponses',
+            ' far fa-copy mb-5',
+            ''
+        );
     }
 
     public function configureUserMenu(UserInterface $user): UserMenu
@@ -147,6 +153,6 @@ class DashboardController extends AbstractDashboardController
 
             ->setName($user->getUserIdentifier())
 
-   ;
+        ;
     }
 }

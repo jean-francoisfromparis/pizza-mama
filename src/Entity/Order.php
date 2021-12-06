@@ -6,7 +6,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\OrderRepository;
-use Symfony\Bridge\Doctrine\IdGenerator\UlidGenerator;
 
 /**
  * @ORM\Entity(repositoryClass=OrderRepository::class)
@@ -16,14 +15,13 @@ class Order
 {
     /**
      * @ORM\Id
-     * @ORM\Column(type="ulid", unique=true)
-     * @ORM\GeneratedValue(strategy="CUSTOM")
-     * @ORM\CustomIdGenerator(class=UlidGenerator::class)
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $pseudo1;
 
@@ -33,7 +31,7 @@ class Order
     private $amount;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="orders")
+     * @ORM\Column(type="string", length=255)
      */
     private $email;
 
@@ -43,7 +41,7 @@ class Order
     private $payedAt;
 
     /**
-     * @ORM\OneToMany(targetEntity=OrderLine::class, mappedBy="orderLine")
+     * @ORM\OneToMany(targetEntity=OrderLine::class, mappedBy="orderLine", orphanRemoval=true)
      */
     private $orderLines;
 
@@ -51,6 +49,8 @@ class Order
     {
         $this->orderLines = new ArrayCollection();
     }
+
+
 
     public function getId()
     {
@@ -62,7 +62,7 @@ class Order
         return $this->pseudo1;
     }
 
-    public function setPseudo1(string $pseudo1): self
+    public function setPseudo1(?string $pseudo1): self
     {
         $this->pseudo1 = $pseudo1;
 
@@ -81,12 +81,12 @@ class Order
         return $this;
     }
 
-    public function getEmail(): ?User
+    public function getEmail(): ?string
     {
         return $this->email;
     }
 
-    public function setEmail(?User $email): self
+    public function setEmail(string $email): self
     {
         $this->email = $email;
 

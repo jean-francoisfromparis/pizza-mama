@@ -20,7 +20,7 @@ class OrderLineRepository extends ServiceEntityRepository
         parent::__construct($registry, OrderLine::class);
     }
 
-    public function findAllById($OrderLineId)
+    public function findAllById($Order)
     {
         $entityManager = $this->getEntityManager();
 
@@ -28,9 +28,20 @@ class OrderLineRepository extends ServiceEntityRepository
             'SELECT o
             FROM App\Entity\OrderLine o
             WHERE o.orderLine = :id'
-        )->setParameter('id', $OrderLineId);
+        )->setParameter('id', $Order->getId());
 
         return $query->getArrayResult();
+    }
+
+    public function findLastInserted()
+    {
+        return $this->createQueryBuilder('o')
+        // ->andWhere('o.payedAt = :val')
+        // ->setParameter('val', $value)
+        ->orderBy('o.id', 'DESC')
+        ->setMaxResults(1)
+        ->getQuery()
+        ->getResult();
     }
 
     // /**

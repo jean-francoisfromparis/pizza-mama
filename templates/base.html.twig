@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    {# <meta http-equiv="Refresh" content="300; url=app_presentation_index"/> #}
     <meta name="description" content="{% block meta_description %}{% trans %}Pizza- Mama - Pizze et pâtes à l'italienne{% endtrans %}{% endblock %}">
     <link rel="{{ asset('images/logo/logo.png') }}" href="" type="image/x-icon">
     <link rel="icon" href="{{ asset('images/logo/logo.png') }}" type="image/x-icon">
@@ -21,10 +22,10 @@
     {% endblock %}
   </head>
   <body>
-  <div class="container-fluid g-0">
-    {% block body %}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
-    {% endblock %}
+    <div class="container-fluid g-0">
+      {% block body %}
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+      {% endblock %}
     </div>
   </body>
 </html>

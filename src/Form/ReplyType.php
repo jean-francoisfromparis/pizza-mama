@@ -24,7 +24,7 @@ class ReplyType extends AbstractType
                 ],
                 'required' => true,
             ])
-            ->add('email', TextType::class,[
+            ->add('email', TextType::class, [
                 'label' => 'email',
                 'row_attr' => [
                     'class' =>  'd-none'
@@ -41,7 +41,6 @@ class ReplyType extends AbstractType
                     // dd(!$comment->getSendAt());
                     if ($form->get('reply')->getData() && !$comment->getSendAt()) {
                         $comment->setSendAt(new \DateTimeImmutable());
-
                     }
                     $event->setData($comment);
                 });

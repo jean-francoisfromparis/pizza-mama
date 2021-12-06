@@ -13,12 +13,12 @@ class SearchData
    *
    * @var string
    */
-  public $q;
+    public $q;
 
   /**
    * promo
    *
    * @var boolean
    */
-  public $promo = false;
+    public $promo = false;
 }

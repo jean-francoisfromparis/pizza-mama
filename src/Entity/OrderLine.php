@@ -18,17 +18,17 @@ class OrderLine
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
      */
     private $productName;
 
     /**
-     * @ORM\Column(type="float", nullable=true)
+     * @ORM\Column(type="float")
      */
     private $price;
 
     /**
-     * @ORM\Column(type="smallint", nullable=true)
+     * @ORM\Column(type="smallint")
      */
     private $quantity;
 
@@ -37,6 +37,7 @@ class OrderLine
      * @ORM\JoinColumn(nullable=false)
      */
     private $orderLine;
+
 
     public function getId(): ?int
     {
@@ -48,7 +49,7 @@ class OrderLine
         return $this->productName;
     }
 
-    public function setProductName(?string $productName): self
+    public function setProductName(string $productName): self
     {
         $this->productName = $productName;
 
@@ -60,7 +61,7 @@ class OrderLine
         return $this->price;
     }
 
-    public function setPrice(?float $price): self
+    public function setPrice(float $price): self
     {
         $this->price = $price;
 
@@ -72,7 +73,7 @@ class OrderLine
         return $this->quantity;
     }
 
-    public function setQuantity(?int $quantity): self
+    public function setQuantity(int $quantity): self
     {
         $this->quantity = $quantity;
 

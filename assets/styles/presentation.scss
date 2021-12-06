@@ -267,12 +267,12 @@ body {
   transform: scale3d(1, 1, 1);
 }
 
-// .Site-menu {
-//   position: -webkit-sticky;
-//   position: sticky;
-//   transform: translateX(-15%);
-//   bottom: 0;
-// }
+.Site-menu {
+  position: -webkit-sticky;
+  position: sticky;
+  transform: translateX(-15%);
+  bottom: 0;
+}
 
 .spied {
   position: relative;

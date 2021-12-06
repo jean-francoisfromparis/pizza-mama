@@ -1,13 +1,12 @@
-{% extends 'base.html.twig' %}
+{% extends '/payment/layout.html.twig' %}
 
 {% block title %}
-  {% trans %}Valider la commade{% endtrans %}
+  {{ parent() }}
+  | Merci pour votre commande !
 {% endblock %}
 
 {% block stylesheets %}
   {{ parent() }}
-  {{ encore_entry_link_tags('order') }}
-  {# {{ encore_entry_link_tags('success') }} #}
 {% endblock %}
 
 {% block body %}
@@ -17,17 +16,17 @@
     <div class="col-md-6">
       <div class="row">
         <span class="d-block text-justify">{% trans %}Pour passer commande l'inscription n'est pas obligatoire. L'inscription nous permettra de vous faire profiter des promotions et des remises fidélités lors de leurs mises en places. Pour recevoir votre commande un pseudo est cependant nécessaire.{% endtrans %}</span>
-        {# <div class="row"><span class="badge rounded-pill bg-title mt-5 w-25"  onclick="history.back()"> {% trans %}retour{% endtrans %}</span></div> #}
 
-        <div class="col-md-6">
-        <a class="btn btn-default" href=" {{path('app_presentation_gallery')}} ">Retourner à la page de commande</a>
+
+        <div class="col">
           <div
-            class="card rounded-3 my-5 position2" style="min-height:405px"  id="table">
+            class="card rounded-3 my-5 position2" style="min-height:405px">
             {# cart #}
             {% set vars = {'order': 'total'} %}
              {% if order | length > 0 %}
             <h2 class="bg-title my-0">
-              <span class="fs-6">Facture: {{ order.payedAt | date("Y~m~d:H-I-S")}}{{ order.id }} </span>
+            <p class="fs-6">Facture: {{ order.payedAt | date("Y~m~d:H-I-S")}}{{ order.id }} </p>
+            <p>Client : {{ order.pseudo }} </p>
             </h2>
             <div class="card-body">
 
@@ -68,7 +67,6 @@
                     </tr>
                   </tfoot>
                 </table>
-                <button class="btn btn-primary" onclick="window.print()">Imprimer la facture</button>
               {% else %}
                 <h4 class="mb-2 text-danger text-center">Vous n'avez encore rien mis dans votre panier</h4>
               {% endif %}
@@ -76,40 +74,17 @@
           </div>
 
         </div>
-        <div class="col-md-6 align-self-center">
 
-          <div class="card border boder-2 mx-auto position-relative position2 position3" style="max-width: 450px; min-height:405px">
-            <div class="rounded-circle circle mt-md-5 position-absolute top-0 start-50 translate-middle pizza-circle"></div>
-            <div class="row g-0">
-              <div class="col-md-6">
-                <img src="{{ asset('build/images/pizza.jpg') }}" class="img-fluid rounded-start d-none d-sm-block" alt="miam une pizza" style="max-width:225px; min-height:405px">
-              </div>
-              <div class="col-md-6 align-self-center">
-                <div class="card-body justify-content-center my-5 align-items-center">
-                  <span class="">
-                    <strong>{{ pseudo }}</strong>
-                    {% trans %}votre paiement a été validé{% endtrans %}</span>
-                  <span class="text-justify">vous pouvez télécharger la facture ou la transférer par mail avec les liens ci-dessous.</span>
-                  <a href="{{path('app_payment_invoice', { 'amount': amount, 'pseudo': pseudo, 'email': email, 'id': id} )}}" class="btn btn-outline-success">{% trans %}Telecharger la facture{% endtrans %}</a>
-                </div>
-                {# <pre>
-                  {{ dump(id) }}
-                </pre>
-                <pre>
-                  {{ dump(order) }}
-                </pre>
-                <pre>
-                  {{ dump(orderLines) }}
-                </pre> #}
 
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
 
     </div>
 
     <div class="col-md-3"></div>
   </div>
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  {# {{ encore_entry_script_tags('payment') }} #}
 {% endblock %}

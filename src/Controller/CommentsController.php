@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\Reply;
 use DateTimeImmutable;
 use App\Form\ReplyType;
-
 use App\Entity\Comments;
 use App\Form\CommentsType;
 use App\Form\Comments1Type;
@@ -135,7 +134,6 @@ class CommentsController extends AbstractController
     public function delete(Request $request, Comments $comment): Response
     {
         if ($this->isCsrfTokenValid('delete' . $comment->getId(), $request->request->get('_token'))) {
-
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($comment);
             $entityManager->flush();
